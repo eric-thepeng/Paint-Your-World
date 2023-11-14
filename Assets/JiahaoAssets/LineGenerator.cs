@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class LineGenerator : MonoBehaviour
 {
@@ -8,6 +9,9 @@ public class LineGenerator : MonoBehaviour
     public GameObject linePrefab;
 
     Line activeLine;
+
+    public float paintAmount;
+    public TextMeshProUGUI paintAmountText;
 
     // Start is called before the first frame update
     void Start()
@@ -20,9 +24,22 @@ public class LineGenerator : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject newLine = Instantiate(linePrefab);
-            activeLine = newLine.GetComponent<Line>();
+            if (paintAmount > 0)
+            {
+                GameObject newLine = Instantiate(linePrefab);
+                activeLine = newLine.GetComponent<Line>();
+            }
         }
+
+        if (Input.GetMouseButton(0))
+        {
+            if (paintAmount > 0)
+            {
+                paintAmount -= Time.deltaTime * 10f;
+            }
+        }
+
+        paintAmountText.text = Mathf.RoundToInt(paintAmount).ToString();
 
         if (Input.GetMouseButtonUp(0))
         {
@@ -34,5 +51,7 @@ public class LineGenerator : MonoBehaviour
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             activeLine.UpdateLine(mousePos);
         }
+
+
     }
 }

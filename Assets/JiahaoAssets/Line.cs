@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+
 public class Line : MonoBehaviour
 {
     public LineRenderer lineRenderer;
+    
 
     List<Vector2> points;
 

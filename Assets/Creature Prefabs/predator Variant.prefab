@@ -70,14 +70,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4767914616061793929, guid: 46663e099fa3f394d98be000c372d305, type: 3}
       propertyPath: myPredator
-      value: none
+      value: Null
       objectReference: {fileID: 0}
+    - target: {fileID: 6536829132341517762, guid: 46663e099fa3f394d98be000c372d305, type: 3}
+      propertyPath: babyPrefab
+      value: 
+      objectReference: {fileID: 6890868613165110467}
     - target: {fileID: 8146527701948680424, guid: 46663e099fa3f394d98be000c372d305, type: 3}
       propertyPath: m_Name
       value: predator Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 8146527701948680424, guid: 46663e099fa3f394d98be000c372d305, type: 3}
+      propertyPath: m_TagString
+      value: Predator
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 46663e099fa3f394d98be000c372d305, type: 3}
+--- !u!1 &6890868613165110467 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8146527701948680424, guid: 46663e099fa3f394d98be000c372d305, type: 3}
+  m_PrefabInstance: {fileID: 3363924724955454507}
+  m_PrefabAsset: {fileID: 0}

@@ -6,6 +6,7 @@ public class CreatureMovement : MonoBehaviour
 {
     [SerializeField] private float speed = 3f;
     [SerializeField] private float waitTimeMin = 2f, waitTimeMax = 5f;
+    [SerializeField] private float boundsY=5, boundsX=9;
 
     private Rigidbody2D rb;
     private bool moving = true;
@@ -18,18 +19,26 @@ public class CreatureMovement : MonoBehaviour
     {
         StartCoroutine(CreatureMoving());
     }
-    public void MoveAround()
+    private void Update()
+    {
+
+    }
+    public Vector2 MoveAround()
     {
         Vector2 move = new Vector2(Random.Range(-speed,speed), Random.Range(-speed,speed));
-        rb.velocity = move;
+        return move;
     }
     private IEnumerator CreatureMoving()
     {
         while (moving)
         {
-            MoveAround();
+            rb.velocity = MoveAround();
+            
+
             yield return new WaitForSeconds(Random.Range(waitTimeMin, waitTimeMax));
             rb.velocity = Vector3.zero;
+            //transform.position = new Vector3(Mathf.Clamp(transform.position.x, -boundsX, boundsX), Mathf.Clamp(transform.position.y, -boundsY, boundsY), transform.position.z);
+
             yield return new WaitForSeconds(Random.Range(waitTimeMin, waitTimeMax));
         }
     }

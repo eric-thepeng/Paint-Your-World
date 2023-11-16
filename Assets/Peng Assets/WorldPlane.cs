@@ -14,17 +14,17 @@ public class WorldPlane : MonoBehaviour
     [SerializeField] private int startingLevel;
     private int level = 0;
 
-    private Dictionary<Vector2Int, GameObject> allCells = new Dictionary<Vector2Int, GameObject>();
+    private Dictionary<Vector2Int, PlaneCell> allCells = new Dictionary<Vector2Int, PlaneCell>();
 
     public class Adjacency
     {
-        private List<CellStats> elements;
-        private int weight;
+        public List<CellStats> statsPair;
+        public int weight;
 
-        public Adjacency()
+        public Adjacency(CellStats cellStats1, CellStats cellStats2)
         {
-            elements = new List<CellStats>();
-            weight = 0;
+            statsPair = new List<CellStats>(){cellStats1, cellStats2};
+            weight = 1;
         }
         
     }
@@ -41,6 +41,7 @@ public class WorldPlane : MonoBehaviour
     private void Start()
     {
         GenerateLevel(3,true);
+        allAdjacncies = new List<Adjacency>();
     }
 
     private void Update()
@@ -54,8 +55,6 @@ public class WorldPlane : MonoBehaviour
         {
             AnalyzeAdjacency();
         }
-        
-        
     }
 
     public void GenerateLevel(int amount, bool placeable = false)
@@ -75,7 +74,7 @@ public class WorldPlane : MonoBehaviour
                         newCell.SetActive(true);
                         newCell.transform.position = new Vector3(i, j, 0);
                         if(placeable) newCell.GetComponent<PlaceablePlaneCell>().SetUp(this);
-                        allCells.Add(new Vector2Int(i,j),newCell);
+                        allCells.Add(new Vector2Int(i,j),newCell.GetComponent<PlaneCell>());
                     }
                 }
             }
@@ -85,9 +84,9 @@ public class WorldPlane : MonoBehaviour
 
     public void AnalyzeAdjacency()
     {
-        foreach (var VARIABLE in allCells)
+        foreach (KeyValuePair<Vector2Int, PlaneCell> cell in allCells)
         {
-            print(VARIABLE.Value.GetComponent<PlaceablePlaneCell>()?.cellStats.amount);
+            print(cell.Value.cellStats.amount);
         }
 
         Vector2Int[] directions = new Vector2Int[4]
@@ -98,9 +97,33 @@ public class WorldPlane : MonoBehaviour
             foreach (var dir in directions)
             {
                 if(!allCells.ContainsKey(kvp.Key + dir)) continue;
-                //List<CellStats> statsPair = new List<CellStats>() {kvp.Key };
+                List<CellStats> statsPair = new List<CellStats>() {kvp.Value.cellStats, allCells[kvp.Key + dir].cellStats};
+                ProcessAdjacency(statsPair);
             }
         }
+
+        foreach (Adjacency adjacency in allAdjacncies)
+        {
+            adjacency.weight /= 2;
+            print("adj " + adjacency.statsPair[0].amount + " - " + adjacency.statsPair[1].amount + " weight: " + adjacency.weight);
+        }
         
+    }
+
+    private void ProcessAdjacency(List<CellStats> statsPair)
+    {
+        if(statsPair.Count!=2) return;
+        foreach (var adjacency in allAdjacncies)
+        {
+            if ((adjacency.statsPair[0].Equals(statsPair[0]) && adjacency.statsPair[1].Equals(statsPair[1])) ||
+                (adjacency.statsPair[0].Equals(statsPair[1]) && adjacency.statsPair[1].Equals(statsPair[0])))
+            {
+                adjacency.weight++;
+                return;
+            }
+        }
+
+        Adjacency newAdjacency = new Adjacency(statsPair[0], statsPair[1]);
+        allAdjacncies.Add(newAdjacency);
     }
 }

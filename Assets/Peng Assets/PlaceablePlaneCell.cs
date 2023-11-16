@@ -5,12 +5,6 @@ using UnityEngine;
 
 public class PlaceablePlaneCell : PlaneCell
 {
-    public void SetUp(WorldPlane parentWorldPlane)
-    {
-        this.parentWorldPlane = parentWorldPlane;
-        cellStats = new CellStats();
-    }
-    
     private void OnMouseUp()
     {
         var mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);

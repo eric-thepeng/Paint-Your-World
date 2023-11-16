@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class GenerationManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    static GenerationManager instance;
+    public static GenerationManager i
     {
-        
+        get
+        {
+            if(instance == null)
+            {
+                instance = FindObjectOfType<GenerationManager>();
+            }
+            return instance;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public GameObject placingPrefab;
 }

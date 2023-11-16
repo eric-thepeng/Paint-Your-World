@@ -237,6 +237,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 598872529579535621, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
+      propertyPath: unitSize
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 598872529579535621, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
+      propertyPath: startingLevel
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4786648656427241208, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
       propertyPath: m_Name
       value: WorldPlane

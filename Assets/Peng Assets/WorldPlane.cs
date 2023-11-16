@@ -10,8 +10,6 @@ public class WorldPlane : MonoBehaviour
 {
     [SerializeField] private GameObject BackgroundCellTemplate;
     [SerializeField] private GameObject PlaceableCellTemplate;
-
-    [SerializeField] public GameObject testPrefabA;
     
     [SerializeField] private int startingLevel;
     private int level = 0;
@@ -44,7 +42,7 @@ public class WorldPlane : MonoBehaviour
 
     private void Start()
     {
-        GenerateLevel(3,true);
+        GenerateLevel(startingLevel,true);
         allAdjacncies = new List<Adjacency>();
     }
 

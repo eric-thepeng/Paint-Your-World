@@ -199,7 +199,7 @@ public class WorldPlane : MonoBehaviour
         //populate and print allPossibilities
         foreach (KeyValuePair<Vector2Int, PlaneCell> cell in allCells)
         {
-            print(cell.Value.cellStats.amount);
+            print(cell.Value.cellStats);
             if (!CellStats.allPossibilities.Contains(cell.Value.cellStats))
             {
                 CellStats.allPossibilities.Add(cell.Value.cellStats);
@@ -224,7 +224,7 @@ public class WorldPlane : MonoBehaviour
         foreach (Adjacency adjacency in allAdjacncies)
         {
             adjacency.weight /= 2;
-            print("adj " + adjacency.statsPair[0].amount + " - " + adjacency.statsPair[1].amount + " weight: " + adjacency.weight);
+            print("adj " + adjacency.statsPair[0] + " - " + adjacency.statsPair[1] + " weight: " + adjacency.weight);
         }
         
     }

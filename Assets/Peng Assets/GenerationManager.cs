@@ -17,5 +17,5 @@ public class GenerationManager : MonoBehaviour
         }
     }
 
-    public GameObject placingPrefab;
+    public PlaceableIdentifier placingPlaceableIdentifier;
 }

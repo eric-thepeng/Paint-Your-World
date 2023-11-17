@@ -119,7 +119,7 @@ public class WorldPlane : MonoBehaviour
         foreach (Vector2Int coordToCheck in adjCoords) //each neighbor cell
         {
             if(!allCells.ContainsKey(coordToCheck)) continue;
-            if(allCells[coordToCheck].cellStats == null) continue;
+            if(allCells[coordToCheck].cellStats == null) { continue; }
 
             Dictionary<CellStats, int> possibilitiesForThisNeighbor = new Dictionary<CellStats, int>();
 

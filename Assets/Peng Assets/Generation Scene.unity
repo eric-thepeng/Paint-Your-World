@@ -239,11 +239,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 598872529579535621, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
       propertyPath: unitSize
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 598872529579535621, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
       propertyPath: startingLevel
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4786648656427241208, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
       propertyPath: m_Name

@@ -11,24 +11,33 @@ public class CreatureMovement : MonoBehaviour
     private Rigidbody2D rb;
     private bool moving = true;
 
+
+    private CreatureController myController;
+
     private void Awake()
     {
         rb= GetComponent<Rigidbody2D>();
+        myController = GetComponent<CreatureController>();
     }
     private void Start()
     {
-        StartCoroutine(CreatureMoving());
+        StartCoroutine(CreatureIdleMove());
     }
     private void Update()
     {
 
+    }
+    public void MoveToFood(Vector3 foodPos)
+    {
+        float step = 0.5f;
+        transform.position = Vector3.Lerp(transform.position, foodPos, step);
     }
     public Vector2 MoveAround()
     {
         Vector2 move = new Vector2(Random.Range(-speed,speed), Random.Range(-speed,speed));
         return move;
     }
-    private IEnumerator CreatureMoving()
+    private IEnumerator CreatureIdleMove()
     {
         while (moving)
         {
@@ -41,5 +50,17 @@ public class CreatureMovement : MonoBehaviour
 
             yield return new WaitForSeconds(Random.Range(waitTimeMin, waitTimeMax));
         }
+    }
+    public IEnumerator CreatureEating(Vector3 foodPos)
+    {
+        StopCoroutine(CreatureIdleMove());
+        while(transform.position != foodPos)
+        {
+            MoveToFood(foodPos);
+        }
+        myController.hunger.HungerGoUp(10f);
+        yield return new WaitForSeconds(7f);
+
+        StartCoroutine(CreatureIdleMove());
     }
 }

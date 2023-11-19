@@ -4,36 +4,77 @@ using UnityEngine;
 
 public class CreatureController : MonoBehaviour
 {
-    [SerializeField] private string myFood;
-    [SerializeField] private string myPredator;
-    [SerializeField] private string myMate;
+    //[SerializeField] private string myFood;
+    //[SerializeField] private string myPredator;
+    //[SerializeField] private string myMate;
     [SerializeField] private float hungerIncrease = 10f;
 
-    private CreatureReproducible babyMaker;
-    private CreatureHunger hunger;
-    private CreatureDestructible destroyer;
+    public string myFood;
+    public CreatureManager creatureMan;
+
+    public CreatureReproducible babyMaker;
+    public CreatureHunger hunger;
+    public CreatureDestructible destroyer;
+    public CreatureMovement mover;
+
+    private float foodDetectRadius = 3f;
+
+    private bool foodColLastFrame = false;
+    private bool foodColThisFrame = false;
+
     private void Awake()
     {
-        babyMaker= GetComponent<CreatureReproducible>();
+        creatureMan = CreatureManager.Instance;
+
+        babyMaker = GetComponent<CreatureReproducible>();
         hunger = GetComponent<CreatureHunger>();
         destroyer = GetComponent<CreatureDestructible>();
+        mover = GetComponent<CreatureMovement>();
     }
-    private void OnTriggerEnter2D(Collider2D col)
+    private void Update()
     {
-        if (col.gameObject.CompareTag(myMate))
+        foodColThisFrame= false;
+        RaycastHit2D foodDetectHit = Physics2D.CircleCast(transform.position, foodDetectRadius, Vector2.zero, 0f);
+        if(foodDetectHit.collider != null )
         {
-            if (!col.GetComponent<CreatureReproducible>().justSpawnedBaby)
+            if(foodDetectHit.collider.gameObject.CompareTag(myFood))
             {
-                babyMaker.MakeBaby();
+                foodColThisFrame = true;
+                if (!foodColLastFrame)
+                {
+                    Debug.Log("move to food");
+                    mover.StartCoroutine(mover.CreatureEating(foodDetectHit.collider.gameObject.transform.position));
+                }
             }
+            
         }
-        else if (col.gameObject.CompareTag(myFood))
-        {
-            hunger.HungerGoUp(hungerIncrease);
-        }
-        else if (col.gameObject.CompareTag(myPredator))
-        {
-            destroyer.DestroyObject();
-        }
+
+
+
+        foodColLastFrame = foodColThisFrame;
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, foodDetectRadius);
+    }
+    //private void OnTriggerEnter2D(Collider2D col)
+    //{
+    //    if (col.gameObject.CompareTag(myMate))
+    //    {
+    //        if (!col.GetComponent<CreatureReproducible>().justSpawnedBaby)
+    //        {
+    //            babyMaker.MakeBaby();
+    //        }
+    //    }
+    //    else if (col.gameObject.CompareTag(myFood))
+    //    {
+    //        hunger.HungerGoUp(hungerIncrease);
+    //    }
+    //    else if (col.gameObject.CompareTag(myPredator))
+    //    {
+    //        destroyer.DestroyObject();
+    //    }
+    //}
 }

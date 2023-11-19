@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 4216938135782219220}
   - component: {fileID: 2464453167226128136}
   - component: {fileID: 4043426100725591607}
-  - component: {fileID: 4767914616061793929}
   - component: {fileID: 6536829132341517762}
   - component: {fileID: 2357847367702229864}
+  - component: {fileID: 8503791122503517681}
   - component: {fileID: 1415247869443884837}
   - component: {fileID: 4145343823691426837}
   m_Layer: 0
@@ -163,21 +163,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &4767914616061793929
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8146527701948680424}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55ae1ffd91796664e9ad52becff41863, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myFood: 
-  myPredator: 
-  myMate: 
 --- !u!114 &6536829132341517762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,6 +177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   babyCooldownTime: 10
   babyPrefab: {fileID: 0}
+  justSpawnedBaby: 0
 --- !u!114 &2357847367702229864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,6 +193,21 @@ MonoBehaviour:
   speed: 3
   waitTimeMin: 2
   waitTimeMax: 5
+  boundsY: 5
+  boundsX: 9
+--- !u!114 &8503791122503517681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8146527701948680424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55ae1ffd91796664e9ad52becff41863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hungerIncrease: 10
 --- !u!114 &1415247869443884837
 MonoBehaviour:
   m_ObjectHideFlags: 0

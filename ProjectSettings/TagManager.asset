@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Grass
+  - Prey
+  - Predator
   layers:
   - Default
   - TransparentFX
@@ -40,4 +43,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Plane
+    uniqueID: 1532004247
+    locked: 0
+  - name: Placement
+    uniqueID: 1127600077
     locked: 0

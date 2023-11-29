@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 public class CellStats
@@ -33,9 +34,33 @@ public class CellStats
         return true;
     }
 
+    public bool EqualsWithToleration(CellStats otherCS, int toleration)
+    {
+        int deltaDifferences = 0;
+
+        foreach (var kvp in stats)
+        {
+            if (otherCS.stats.ContainsKey(kvp.Key))
+            {
+                deltaDifferences += Math.Abs(otherCS.stats[kvp.Key] - stats[kvp.Key]);
+            }
+            else
+            {
+                deltaDifferences += kvp.Value;
+            }
+        }
+
+        foreach (var kvp in otherCS.stats)
+        {
+            if (!stats.ContainsKey(kvp.Key)) deltaDifferences += kvp.Value;
+        }
+
+        return (deltaDifferences <= toleration) ;
+    }
+
     public override string ToString()
     {
-        string toReturn = "CellStats ";
+        string toReturn = "CellStats || ";
 
         foreach (var kvp in stats)
         {

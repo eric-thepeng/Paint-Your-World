@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,7 +14,7 @@ public class WorldPlane : MonoBehaviour
     
     [SerializeField] private int startingLevel;
     [SerializeField] private int totalLevel;
-    [SerializeField] private int maxTryTime = 10;
+    [SerializeField] private int maxTryTime = 30;
     private int level = 0;
     
     [SerializeField]private float unitSize = 1f;
@@ -121,6 +122,9 @@ public class WorldPlane : MonoBehaviour
             if (PerformWFC())
             {
                 generationSuccess = true;
+                Debug.Log("WFC SUCCESS IN " + currenTryTime + " RUNS.");
+                BuildTheWorld();
+                return;
             }
         }
         while (currenTryTime <= maxTryTime && generationSuccess == false);
@@ -128,11 +132,121 @@ public class WorldPlane : MonoBehaviour
         Debug.Log("Cannot find WFC solution after " + maxTryTime + " tries.");
     }
 
+    void BuildTheWorld()
+    {
+        for (int x = 0; x < 2*totalLevel - 1; x++)
+        {
+            for (int y = 0; y < 2*totalLevel - 1; y++)
+            {
+                if (!startingCells.ContainsKey(new Vector2Int(x, y)))
+                {
+                    // Create new cell
+                    GameObject newCell = Instantiate(BackgroundCellTemplate,transform);
+                    newCell.SetActive(true);
+                    newCell.transform.position = new Vector3((x-startingLevel) * (unitSize), (y-startingLevel)* (unitSize), 0);
+                    newCell.GetComponent<BackgroundPlaneCell>()
+                        .AssignCellStats(superPositionsGrid[x,y].GetObservedValue());
+                    
+                    // Adujust Size 
+                    newCell.transform.localScale = new Vector3(unitSize, unitSize, unitSize);
+                }
+            }
+        }
+    }
+
     public bool PerformWFC()
     {
         InitializeGrid();
+        
+        //STAGE 1 Deal With Boarder Cells
+        
+        
+        //STAGE 2 Deal With Rest
+        while (DoUnobservedNodesExist())
+        {
+            Vector2Int node = GetNextUnobservedNode();
+            
+            if (!superPositionsGrid[node.x,node.y].HasPossibilities())
+            {
+                return false; //failure
+            }
+            
+            superPositionsGrid[node.x, node.y].Observe();
+            PropogateNeighbors(node);
+        }
         return true;
     }
+    
+    bool DoUnobservedNodesExist()
+    {
+        for (int x = 0; x < 2*totalLevel - 1; x++)
+        {
+            for (int y = 0; y < 2*totalLevel - 1; y++)
+            {
+                if (superPositionsGrid[x, y].IsObserved() == false) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    Vector2Int GetNextUnobservedNode()
+    {
+        int minPossibleAmount = 2147483646;
+        Vector2Int minPossibleCoord = new Vector2Int(0, 0);
+        for (int x = 0; x < 2*totalLevel - 1; x++)
+        {
+            for (int y = 0; y < 2*totalLevel - 1; y++)
+            {
+                if (!(superPositionsGrid[x, y].IsObserved()) && superPositionsGrid[x, y].NumOptions < minPossibleAmount)
+                {
+                    minPossibleAmount = superPositionsGrid[x, y].NumOptions;
+                    minPossibleCoord = new Vector2Int(x, y);
+                }
+            }
+        }
+        
+        //return the coordinates of the unobserved node with the fewest possible options
+        return minPossibleCoord; 
+    }
+    
+    void PropogateTo(Vector2Int node, Vector2Int direction)
+    {
+        Vector2Int tarNode = node + direction;
+        
+        if(tarNode.x < 0 || tarNode.x >= 2*totalLevel-1 || tarNode.y < 0 || tarNode.y >= 2*totalLevel-1) return;
+        SuperPosition spToCheck = superPositionsGrid[tarNode.x, tarNode.y];
+        if (spToCheck.IsObserved()) return;
+
+        for(int i = spToCheck.RemainPossibleValues().Count-1; i >=0 ; i--)
+        {
+            bool keep = false;
+            foreach (var adjacency in allAdjacncies)
+            {
+                if (adjacency.orgCellStat.Equals(superPositionsGrid[node.x, node.y].GetObservedValue()) 
+                    && adjacency.tarCellStat.Equals(spToCheck.RemainPossibleValues()[i]) 
+                    && adjacency.direction == direction)
+                {
+                    keep = true;
+                }
+            }
+            if(!keep)spToCheck.RemovePossibleValue(spToCheck.RemainPossibleValues()[i]);
+        }
+        
+    }
+
+    void PropogateNeighbors(Vector2Int node)
+    {
+        SuperPosition sp = superPositionsGrid[node.x, node.y];
+
+        if(!sp.IsObserved()) Debug.LogError("SuperPosition not observed");
+        foreach (var dir in allDirections)
+        {
+            PropogateTo(node,dir);
+        }
+    }
+    
 
     public void InitializeGrid()
     {
@@ -372,4 +486,5 @@ public class WorldPlane : MonoBehaviour
         }
         allAdjacncies.Add(tempAdjacency);
     }
+    
 }

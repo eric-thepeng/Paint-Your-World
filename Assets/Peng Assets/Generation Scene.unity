@@ -242,6 +242,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 598872529579535621, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
+      propertyPath: maxTryTime
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 598872529579535621, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
       propertyPath: totalLevel
       value: 10
       objectReference: {fileID: 0}

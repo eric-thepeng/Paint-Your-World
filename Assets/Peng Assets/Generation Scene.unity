@@ -232,7 +232,7 @@ MonoBehaviour:
   allPlacingPlaceableIdentifiers:
   - {fileID: 11400000, guid: d6cce08e8d1254522beb56e7404acb4c, type: 2}
   - {fileID: 11400000, guid: 4baca69e583e4432086517e700ea4f69, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 5a8ca365c9da94f9083fcd06b7d31dea, type: 2}
   - {fileID: 0}
   - {fileID: 0}
 --- !u!1001 &7667155719942535343

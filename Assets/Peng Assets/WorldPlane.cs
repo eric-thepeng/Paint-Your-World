@@ -337,8 +337,14 @@ public class WorldPlane : MonoBehaviour
         {
             foreach (var dir in allDirections)
             {
-                if(!startingCells.ContainsKey(kvp.Key + dir)) continue;
-                ProcessAdjacency(kvp.Value.cellStats, startingCells[kvp.Key + dir].cellStats,dir);
+                if (startingCells.ContainsKey(kvp.Key + dir))
+                {
+                    ProcessAdjacency(kvp.Value.cellStats, startingCells[kvp.Key + dir].cellStats,dir);
+                }
+                else
+                {
+                    ProcessAdjacency(kvp.Value.cellStats, startingCells[kvp.Key - dir * (2*startingLevel-2)].cellStats,dir);
+                }
             }
         }
 

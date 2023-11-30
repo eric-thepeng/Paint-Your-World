@@ -60,12 +60,14 @@ public class CellStats
 
     public override string ToString()
     {
-        string toReturn = "CellStats || ";
+        string toReturn = "CS | ";
 
         foreach (var kvp in stats)
         {
             toReturn += kvp.Key.placeableName + " " + kvp.Value +" || ";
         }
+
+        if (stats.Count == 0) toReturn += "Empty";
         
         return toReturn;
     }

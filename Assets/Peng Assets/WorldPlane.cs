@@ -12,23 +12,43 @@ public class WorldPlane : MonoBehaviour
     [SerializeField] private GameObject PlaceableCellTemplate;
     
     [SerializeField] private int startingLevel;
+    [SerializeField] private int totalLevel;
+    [SerializeField] private int maxTryTime = 10;
     private int level = 0;
-
+    
     [SerializeField]private float unitSize = 1f;
 
-    private Dictionary<Vector2Int, PlaneCell> allCells = new Dictionary<Vector2Int, PlaneCell>();
+    private Dictionary<Vector2Int, PlaneCell> startingCells;
 
+    private SuperPosition[,] superPositionsGrid;
+
+    Vector2Int[] allDirections = new Vector2Int[4] { new Vector2Int(1, 0), new Vector2Int(-1, 0), new Vector2Int(0, 1), new Vector2Int(0, -1) };
+    
     public class Adjacency
     {
-        public List<CellStats> statsPair;
+        public CellStats orgCellStat;
+        public CellStats tarCellStat;
+        public Vector2Int direction;
         public int weight;
 
-        public Adjacency(CellStats cellStats1, CellStats cellStats2)
+        public Adjacency(CellStats orgCellStat, CellStats tarCellStat, Vector2Int direction)
         {
-            statsPair = new List<CellStats>(){cellStats1, cellStats2};
+            this.orgCellStat = orgCellStat;
+            this.tarCellStat = tarCellStat;
             weight = 1;
+            this.direction = direction;
         }
-        
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            if (obj is not Adjacency) return false;
+            Adjacency oppAdjacency = (Adjacency)obj;
+            if (this.orgCellStat.Equals(oppAdjacency.orgCellStat) &&
+                this.tarCellStat.Equals(oppAdjacency.tarCellStat) &&
+                this.direction == oppAdjacency.direction) return true;
+            return false;
+        }
     }
 
     private List<Adjacency> allAdjacncies;
@@ -42,7 +62,7 @@ public class WorldPlane : MonoBehaviour
 
     private void Start()
     {
-        GenerateLevel(startingLevel,true);
+        GenerateStartingPlane(startingLevel);
         allAdjacncies = new List<Adjacency>();
     }
 
@@ -50,7 +70,7 @@ public class WorldPlane : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.J))
         {
-            GenerateLevel(1);
+            GenerateWorld(); //GenerateLevel(1);
         }
 
         if (Input.GetKeyDown(KeyCode.K))
@@ -59,6 +79,107 @@ public class WorldPlane : MonoBehaviour
         }
     }
 
+    public void GenerateStartingPlane(int amount)
+    {
+        GameObject goToGenerate = PlaceableCellTemplate;
+        startingCells = new Dictionary<Vector2Int, PlaneCell>();
+        while (amount != 0)
+        {
+            amount--;
+            
+            for (int i = -level; i <= level; i++)
+            {
+                for (int j = -level; j <= level; j++)
+                {
+                    if (i == -level || i == level || j == -level || j == level)
+                    {
+                        // Create new cell
+                        GameObject newCell = Instantiate(goToGenerate,transform);
+                        newCell.SetActive(true);
+                        newCell.transform.position = new Vector3(i * unitSize, j* unitSize, 0);
+                        startingCells.Add(new Vector2Int(i + startingLevel,j + startingLevel),newCell.GetComponent<PlaneCell>());
+                        
+                        // Populate with placeables - Placable Cell
+                        newCell.GetComponent<PlaceablePlaneCell>().SetUp(this);
+                        
+                        // Adujust Size 
+                        newCell.transform.localScale = new Vector3(unitSize, unitSize, unitSize);
+                    }
+                }
+            }
+            level++;
+        }
+    }
+
+    public void GenerateWorld()
+    {
+        int currenTryTime = 0;
+        bool generationSuccess = false;
+        do
+        {
+            currenTryTime += 1;
+            if (PerformWFC())
+            {
+                generationSuccess = true;
+            }
+        }
+        while (currenTryTime <= maxTryTime && generationSuccess == false);
+        
+        Debug.Log("Cannot find WFC solution after " + maxTryTime + " tries.");
+    }
+
+    public bool PerformWFC()
+    {
+        InitializeGrid();
+        return true;
+    }
+
+    public void InitializeGrid()
+    {
+        int gridWidth = 2 * totalLevel - 1;
+        superPositionsGrid = new SuperPosition[gridWidth, gridWidth];
+        Vector2Int botLeftStartingCell = new Vector2Int(totalLevel - startingLevel, totalLevel - startingLevel);
+
+        //populate superposition grid
+        for (int x = 0; x < gridWidth; x++)
+        {
+            for (int y = 0; y < gridWidth; y++)
+            {
+                superPositionsGrid[x, y] = new SuperPosition(CellStats.allPossibilities);
+            }
+        }
+
+        //assign exisiting placeable plane
+        foreach (var pair in startingCells)
+        {
+            superPositionsGrid[botLeftStartingCell.x + pair.Key.x, botLeftStartingCell.y + pair.Key.y].AssignObservation(pair.Value.cellStats);
+        }
+    }
+
+    public List<Vector2Int> GetPlaceableCoord(int placeableLevel, int totalLevel)
+    {
+        List<Vector2Int> output = new List<Vector2Int>();
+        
+        int gridWidth = 2 * this.totalLevel;
+        Vector2Int botLeftStartingCell = new Vector2Int(totalLevel - startingLevel, totalLevel - startingLevel);
+        Vector2Int topRightStartingCell = 2 * new Vector2Int(placeableLevel, placeableLevel) + botLeftStartingCell;
+
+        //populate superposition grid
+        for (int x = 0; x < gridWidth; x++)
+        {
+            for (int y = 0; y < gridWidth; y++)
+            {
+                if ((botLeftStartingCell.x <= x && x <= topRightStartingCell.x) &&
+                    (botLeftStartingCell.y <= y && y <= topRightStartingCell.y))
+                {
+                    output.Add(new Vector2Int(x,y));
+                }
+            }
+        }
+        return output;
+    }
+
+    /*
     public void GenerateLevel(int amount, bool placeable = false)
     {
         GameObject goToGenerate = placeable ? PlaceableCellTemplate : BackgroundCellTemplate;
@@ -76,7 +197,7 @@ public class WorldPlane : MonoBehaviour
                         GameObject newCell = Instantiate(goToGenerate,transform);
                         newCell.SetActive(true);
                         newCell.transform.position = new Vector3(i * unitSize, j* unitSize, 0);
-                        allCells.Add(new Vector2Int(i,j),newCell.GetComponent<PlaneCell>());
+                        startingCells.Add(new Vector2Int(i,j),newCell.GetComponent<PlaneCell>());
                         
                         // Populate with placeables - Placable Cell
                         if(placeable) newCell.GetComponent<PlaceablePlaneCell>().SetUp(this);
@@ -100,11 +221,11 @@ public class WorldPlane : MonoBehaviour
     public CellStats GenerateNewCellStats(Vector2Int coord)
     {
         //eliminate error cases
-        if (!allCells.ContainsKey(coord))Debug.LogError("Does not contain this coordination to generate new CellStats");
-        if(allCells[coord].cellStats != null)Debug.LogError("This coordination already has a CellStats");
+        if (!startingCells.ContainsKey(coord))Debug.LogError("Does not contain this coordination to generate new CellStats");
+        if(startingCells[coord].cellStats != null)Debug.LogError("This coordination already has a CellStats");
 
         //populate and set up
-        allCells[coord].cellStats = new CellStats();
+        startingCells[coord].cellStats = new CellStats();
         List<Dictionary<CellStats, int>> possibilitiesList = new List<Dictionary<CellStats, int>>();
 
         //calculate neighbour
@@ -116,14 +237,15 @@ public class WorldPlane : MonoBehaviour
             coord + new Vector2Int(0, -1)
         };
         
+        /*
         foreach (Vector2Int coordToCheck in adjCoords) //each neighbor cell
         {
-            if(!allCells.ContainsKey(coordToCheck)) continue;
-            if(allCells[coordToCheck].cellStats == null) { continue; }
+            if(!startingCells.ContainsKey(coordToCheck)) continue;
+            if(startingCells[coordToCheck].cellStats == null) { continue; }
 
             Dictionary<CellStats, int> possibilitiesForThisNeighbor = new Dictionary<CellStats, int>();
 
-            CellStats adjCellStats = allCells[coordToCheck].cellStats; //each adjacency
+            CellStats adjCellStats = startingCells[coordToCheck].cellStats; //each adjacency
             foreach (Adjacency adjacency in allAdjacncies)
             {
                 CellStats csToAdd = null;
@@ -192,12 +314,16 @@ public class WorldPlane : MonoBehaviour
         }
         if(finalCellStats == null) Debug.LogError("Final Cell Stats is null");
         return finalCellStats;
-    }
+    }*/
 
     public void AnalyzeAdjacency()
     {
-        //populate and print allPossibilities
-        foreach (KeyValuePair<Vector2Int, PlaneCell> cell in allCells)
+        //Reset allPossibilities
+        CellStats.allPossibilities = new List<CellStats>();
+        allAdjacncies = new List<Adjacency>();
+        
+        //Populate and print allPossibilities
+        foreach (KeyValuePair<Vector2Int, PlaneCell> cell in startingCells)
         {
             print(cell.Value.cellStats);
             if (!CellStats.allPossibilities.Contains(cell.Value.cellStats))
@@ -205,44 +331,39 @@ public class WorldPlane : MonoBehaviour
                 CellStats.allPossibilities.Add(cell.Value.cellStats);
             }
         }
-
-        //check each direction and analyze adjacency scheme
-        Vector2Int[] directions = new Vector2Int[4]
-            { new Vector2Int(1, 0), new Vector2Int(-1, 0), new Vector2Int(0, 1), new Vector2Int(0, -1) };
         
-        foreach (var kvp in allCells)
+        //Process each pair and direction
+        foreach (var kvp in startingCells)
         {
-            foreach (var dir in directions)
+            foreach (var dir in allDirections)
             {
-                if(!allCells.ContainsKey(kvp.Key + dir)) continue;
-                List<CellStats> statsPair = new List<CellStats>() {kvp.Value.cellStats, allCells[kvp.Key + dir].cellStats};
-                ProcessAdjacency(statsPair);
+                if(!startingCells.ContainsKey(kvp.Key + dir)) continue;
+                ProcessAdjacency(kvp.Value.cellStats, startingCells[kvp.Key + dir].cellStats,dir);
             }
         }
 
-        //print each adjacency
+        //Print each adjacency
         foreach (Adjacency adjacency in allAdjacncies)
         {
-            adjacency.weight /= 2;
-            print("adj " + adjacency.statsPair[0] + " - " + adjacency.statsPair[1] + " weight: " + adjacency.weight);
+            print("org: " + adjacency.orgCellStat + " tar: " + adjacency.tarCellStat + " dir: " + adjacency.direction.x + " " +adjacency.direction.y + " weight: " + adjacency.weight);
         }
         
     }
 
-    private void ProcessAdjacency(List<CellStats> statsPair)
+    private void ProcessAdjacency(CellStats orgCellStat, CellStats tarCellStat, Vector2Int direction)
     {
-        if(statsPair.Count!=2) return;
+        Adjacency tempAdjacency = new Adjacency(orgCellStat, tarCellStat, direction);
+
         foreach (var adjacency in allAdjacncies)
         {
-            if ((adjacency.statsPair[0].Equals(statsPair[0]) && adjacency.statsPair[1].Equals(statsPair[1])) ||
-                (adjacency.statsPair[0].Equals(statsPair[1]) && adjacency.statsPair[1].Equals(statsPair[0])))
+            // avoid duplicated adjacency add in direction
+            if (adjacency.Equals(tempAdjacency))
             {
                 adjacency.weight++;
                 return;
             }
+ 
         }
-
-        Adjacency newAdjacency = new Adjacency(statsPair[0], statsPair[1]);
-        allAdjacncies.Add(newAdjacency);
+        allAdjacncies.Add(tempAdjacency);
     }
 }

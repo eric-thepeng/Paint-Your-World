@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Unity.IO.LowLevel.Unsafe;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -219,6 +220,7 @@ public class WorldPlane : MonoBehaviour
         SuperPosition spToCheck = superPositionsGrid[tarNode.x, tarNode.y];
         if (spToCheck.IsObserved()) return;
 
+        /*
         for(int i = spToCheck.RemainPossibleValues().Count-1; i >=0 ; i--)
         {
             bool keep = false;
@@ -232,6 +234,24 @@ public class WorldPlane : MonoBehaviour
                 }
             }
             if(!keep)spToCheck.RemovePossibleValue(spToCheck.RemainPossibleValues()[i]);
+        }*/
+        
+        for(int i = spToCheck.RemainPossibleValues().Count-1; i >=0 ; i--)
+        {
+            bool keep = false;
+            SuperPosition.Proto oppProto = spToCheck.RemainPossibleValues()[i];
+            CellStats oppCS = spToCheck.RemainPossibleValues()[i].cellStats;
+            foreach (var adjacency in allAdjacncies)
+            {
+                if (adjacency.orgCellStat.Equals(superPositionsGrid[node.x, node.y].GetObservedValue()) 
+                    && adjacency.tarCellStat.Equals(oppCS) 
+                    && adjacency.direction == direction)
+                {
+                    keep = true;
+                }
+            }
+
+            if (!keep) spToCheck.RemainPossibleValues().Remove(oppProto);
         }
         
     }
@@ -259,7 +279,7 @@ public class WorldPlane : MonoBehaviour
         {
             for (int y = 0; y < gridWidth; y++)
             {
-                superPositionsGrid[x, y] = new SuperPosition(CellStats.allPossibilities);
+                superPositionsGrid[x, y] = new SuperPosition(CellStats.weightedAllPossibilities);
             }
         }
 
@@ -433,17 +453,32 @@ public class WorldPlane : MonoBehaviour
     public void AnalyzeAdjacency()
     {
         //Reset allPossibilities
-        CellStats.allPossibilities = new List<CellStats>();
+        //CellStats.allPossibilities = new List<CellStats>();
+        CellStats.weightedAllPossibilities = new List<SuperPosition.Proto>();
         allAdjacncies = new List<Adjacency>();
         
         //Populate and print allPossibilities
         foreach (KeyValuePair<Vector2Int, PlaneCell> cell in startingCells)
         {
-            print(cell.Value.cellStats);
-            if (!CellStats.allPossibilities.Contains(cell.Value.cellStats))
+            bool incremented = false;
+            foreach (var proto in CellStats.weightedAllPossibilities)
             {
-                CellStats.allPossibilities.Add(cell.Value.cellStats);
+                if (proto.cellStats.Equals(cell.Value.cellStats))
+                {
+                    proto.weight += 1;
+                    incremented = true;
+                }
             }
+            
+            if(!incremented)
+            {
+                CellStats.weightedAllPossibilities.Add(new SuperPosition.Proto(cell.Value.cellStats,1));
+            }
+        }
+
+        foreach (var VARIABLE in CellStats.weightedAllPossibilities)
+        {
+            print(VARIABLE.cellStats + " weight " + VARIABLE.weight );
         }
         
         //Process each pair and direction

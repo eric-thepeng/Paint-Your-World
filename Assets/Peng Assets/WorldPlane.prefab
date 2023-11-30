@@ -288,6 +288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BackgroundCellTemplate: {fileID: 200546840751474530}
   PlaceableCellTemplate: {fileID: 4745188433467807694}
-  testPrefabA: {fileID: 4877915227778958744, guid: 80f25ae8b31384a78bfe0dab52d9d759, type: 3}
   startingLevel: 3
+  totalLevel: 10
+  maxTryTime: 1000
   unitSize: 1

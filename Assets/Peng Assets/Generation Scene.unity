@@ -229,6 +229,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placingPlaceableIdentifier: {fileID: 11400000, guid: d6cce08e8d1254522beb56e7404acb4c, type: 2}
+  allPlacingPlaceableIdentifiers:
+  - {fileID: 11400000, guid: d6cce08e8d1254522beb56e7404acb4c, type: 2}
+  - {fileID: 11400000, guid: 4baca69e583e4432086517e700ea4f69, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &7667155719942535343
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -237,22 +243,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 598872529579535621, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
-      propertyPath: unitSize
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 598872529579535621, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
-      propertyPath: maxTryTime
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 598872529579535621, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
-      propertyPath: totalLevel
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 598872529579535621, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
-      propertyPath: startingLevel
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4786648656427241208, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
       propertyPath: m_Name
       value: WorldPlane

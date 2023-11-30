@@ -4,7 +4,8 @@ using System.Collections.Generic;
 public class CellStats
 {
     //public int amount;
-    public static List<CellStats> allPossibilities = new List<CellStats>();
+    //public static List<CellStats> allPossibilities = new List<CellStats>();
+    public static List<SuperPosition.Proto> weightedAllPossibilities = new List<SuperPosition.Proto>();
 
     public Dictionary<PlaceableIdentifier, int> stats;
 
@@ -33,7 +34,7 @@ public class CellStats
 
         return true;
     }
-
+    
     public bool EqualsWithToleration(CellStats otherCS, int toleration)
     {
         int deltaDifferences = 0;

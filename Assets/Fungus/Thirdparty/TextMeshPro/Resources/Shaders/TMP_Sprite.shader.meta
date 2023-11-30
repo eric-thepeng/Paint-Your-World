@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: fcc5cd9c5800d9046b5a63650b06cd25
+=======
+guid: d2f656f5a92714802b20f58561323b0b
+>>>>>>> Stashed changes
 timeCreated: 1450517184
 licenseType: Pro
 ShaderImporter:

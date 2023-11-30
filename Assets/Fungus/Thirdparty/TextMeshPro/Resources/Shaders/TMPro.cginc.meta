@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: ea9ec328b7218ae499be08d734bbe89a
+=======
+guid: 036d956c7882b4c62abeea3642daef88
+>>>>>>> Stashed changes
 ShaderImporter:
   defaultTextures: []
   userData: 

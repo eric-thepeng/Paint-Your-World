@@ -228,7 +228,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cef4b9e32bf7417a9d4f93af48eb2a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placingPrefab: {fileID: 4877915227778958744, guid: 80f25ae8b31384a78bfe0dab52d9d759, type: 3}
+  placingPlaceableIdentifier: {fileID: 11400000, guid: d6cce08e8d1254522beb56e7404acb4c, type: 2}
+  allPlacingPlaceableIdentifiers:
+  - {fileID: 11400000, guid: d6cce08e8d1254522beb56e7404acb4c, type: 2}
+  - {fileID: 11400000, guid: 4baca69e583e4432086517e700ea4f69, type: 2}
+  - {fileID: 11400000, guid: 5a8ca365c9da94f9083fcd06b7d31dea, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &7667155719942535343
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3772118363525692161}
   - component: {fileID: 4991727757783423151}
+  - component: {fileID: 8272356459948003255}
   m_Layer: 0
   m_Name: Background Plane Cell
   m_TagString: Untagged
@@ -71,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1532004247
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -84,6 +85,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8272356459948003255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 200546840751474530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90323194c236145c7b561c169017d8dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4745188433467807694
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,7 +170,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1532004247
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -275,5 +288,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BackgroundCellTemplate: {fileID: 200546840751474530}
   PlaceableCellTemplate: {fileID: 4745188433467807694}
-  testPrefabA: {fileID: 4877915227778958744, guid: 80f25ae8b31384a78bfe0dab52d9d759, type: 3}
   startingLevel: 3
+  totalLevel: 10
+  maxTryTime: 1000
+  unitSize: 1

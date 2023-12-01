@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlaneCell : MonoBehaviour
 {
     protected WorldPlane parentWorldPlane;
-    public CellStats cellStats;
+    public CellStats cellStats = null;
     
     public void SetUp(WorldPlane parentWorldPlane)
     {

@@ -17,7 +17,7 @@ public class LineGenerator : MonoBehaviour
     public float paintAmount;
     public TextMeshProUGUI paintAmountText;
     public Camera screenshotCamera;
-    public List<GameObject> testEntity = new List<GameObject>();
+    //public PlaceableIdentifier targetPlaceableIdentifier;
     public GameObject entityParent;
     public float lineWidth;
     public Slider lineWidthSlider;
@@ -47,7 +47,7 @@ public class LineGenerator : MonoBehaviour
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        //if (Physics.Raycast(ray, out hit) && hit.collider.CompareTag("DrawCanvas"))
+        //(Physics.Raycast(ray, out hit) && hit.collider.CompareTag("DrawCanvas"))
         {
             if (Input.GetMouseButtonDown(0))
             {
@@ -107,8 +107,7 @@ public class LineGenerator : MonoBehaviour
         cam.Render();
         tex_transparent.ReadPixels(grab_area, 0, 0);
         tex_transparent.Apply();
-
-
+        
         // Encode the resulting output texture to a byte array then write to the file
         //byte[] pngShot = ImageConversion.EncodeToPNG(tex_transparent);
         byte[] pngShot = tex_transparent.EncodeToPNG();
@@ -132,17 +131,14 @@ public class LineGenerator : MonoBehaviour
             new Vector2(0.5f, 0.5f), // Set the pivot to (0.5, 0.5) for center
             100.0f
         );
-        foreach (GameObject _testEntity in testEntity){
-            if (_testEntity != null)
-            {
-                _testEntity.GetComponent<SpriteRenderer>().sprite = spr;
 
-                _testEntity.GetComponent<SpriteRenderer>().sharedMaterial.mainTexture = tex_transparent;
-                Instantiate(_testEntity, entityParent.transform);
-            }
-        }
+        // Assign and Adjust Placeable Identifier
+        PlaceableIdentifier targetPlaceableIdentifier = InventoryManager.i.GetSelectedPlaceableIdentifier();
+        targetPlaceableIdentifier.prefab.GetComponent<SpriteRenderer>().sprite = spr;
+        targetPlaceableIdentifier.prefab.GetComponent<SpriteRenderer>().sharedMaterial.mainTexture = tex_transparent;
+        InventoryManager.i.FinishPaintingPlaceableIdentifier(targetPlaceableIdentifier);
 
-
+        /*
         foreach (Transform child in entityParent.transform)
         {
             if (child.gameObject.CompareTag("Sheep"))
@@ -151,7 +147,7 @@ public class LineGenerator : MonoBehaviour
                 Debug.Log("Sprite replacement done");
             }
 
-        }
+        }*/
 
         //Texture2D.Destroy(tex_transparent);
 

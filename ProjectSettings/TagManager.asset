@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Sheep
+  - Grass
+  - ScreenshotCamera
+  - Predator
+  - Prey
+  - DrawCanvas
   layers:
   - Default
   - TransparentFX

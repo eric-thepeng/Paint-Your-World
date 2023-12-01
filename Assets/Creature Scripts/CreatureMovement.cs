@@ -1,3 +1,4 @@
+using Fungus;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,9 @@ public class CreatureMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private bool moving = true;
-
+    public Vector3 foodPos;
+    public bool moveToFood;
+    private Coroutine idleMove;
 
     private CreatureController myController;
 
@@ -21,17 +24,26 @@ public class CreatureMovement : MonoBehaviour
     }
     private void Start()
     {
-        StartCoroutine(CreatureIdleMove());
+        idleMove = StartCoroutine(CreatureIdleMove());
     }
-    private void Update()
+    private void FixedUpdate()
     {
+        if(moveToFood)
+        {
+            StopAllCoroutines();
+            idleMove = null;
+            transform.position = Vector3.Lerp(transform.position, foodPos, 0.5f*Time.deltaTime);
+        }
+        else
+        {
+            if (idleMove == null)
+            {
+                Debug.Log(name + "start idle move");
+                idleMove = StartCoroutine(CreatureIdleMove());
+            }
+        }
+    }
 
-    }
-    public void MoveToFood(Vector3 foodPos)
-    {
-        float step = 0.5f;
-        transform.position = Vector3.Lerp(transform.position, foodPos, step);
-    }
     public Vector2 MoveAround()
     {
         Vector2 move = new Vector2(Random.Range(-speed,speed), Random.Range(-speed,speed));
@@ -56,9 +68,9 @@ public class CreatureMovement : MonoBehaviour
         StopCoroutine(CreatureIdleMove());
         while(transform.position != foodPos)
         {
-            MoveToFood(foodPos);
+            //MoveToFood(foodPos);
         }
-        myController.hunger.HungerGoUp(10f);
+        myController.creatureHunger.HungerGoUp(10f);
         yield return new WaitForSeconds(7f);
 
         StartCoroutine(CreatureIdleMove());

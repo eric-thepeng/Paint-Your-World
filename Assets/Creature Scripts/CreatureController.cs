@@ -6,32 +6,35 @@ public class CreatureController : MonoBehaviour
 {
     //[SerializeField] private string myFood;
     //[SerializeField] private string myPredator;
-    //[SerializeField] private string myMate;
+    [SerializeField] private string myMate;
     [SerializeField] private float hungerIncrease = 10f;
+    public float calVal;
 
-    public string myFood;
+    public string myFood = "Predator";
     public CreatureManager creatureMan;
 
-    public CreatureReproducible babyMaker;
-    public CreatureHunger hunger;
-    public CreatureDestructible destroyer;
-    public CreatureMovement mover;
+    public CreatureReproducible creatureReproducible;
+    public CreatureHunger creatureHunger;
+    public CreatureDestructible creatureDestructible;
+    public CreatureMovement creatureMovement;
+    public CreatureHungerBar creatureHungerBar;
 
-    private float foodDetectRadius = 3f;
+    private float foodDetectRadius = 4f;
 
-    private bool foodColLastFrame = false;
-    private bool foodColThisFrame = false;
+    private bool foodColThisFrame, foodColLastFrame;
+
 
     private void Awake()
     {
         creatureMan = CreatureManager.Instance;
 
-        babyMaker = GetComponent<CreatureReproducible>();
-        hunger = GetComponent<CreatureHunger>();
-        destroyer = GetComponent<CreatureDestructible>();
-        mover = GetComponent<CreatureMovement>();
+        creatureReproducible = GetComponent<CreatureReproducible>();
+        creatureHunger = GetComponent<CreatureHunger>();
+        creatureDestructible = GetComponent<CreatureDestructible>();
+        creatureMovement = GetComponent<CreatureMovement>();
+        creatureHungerBar= GetComponent<CreatureHungerBar>();
     }
-    private void Update()
+    private void FixedUpdate()
     {
         foodColThisFrame= false;
         RaycastHit2D foodDetectHit = Physics2D.CircleCast(transform.position, foodDetectRadius, Vector2.zero, 0f);
@@ -40,17 +43,19 @@ public class CreatureController : MonoBehaviour
             if(foodDetectHit.collider.gameObject.CompareTag(myFood))
             {
                 foodColThisFrame = true;
-                if (!foodColLastFrame)
+                if(!foodColLastFrame)
                 {
-                    Debug.Log("move to food");
-                    mover.StartCoroutine(mover.CreatureEating(foodDetectHit.collider.gameObject.transform.position));
+                    Debug.Log(name + "move to food" + foodDetectHit.collider.name);
+                    creatureMovement.foodPos = foodDetectHit.collider.gameObject.transform.position;
+                    creatureMovement.moveToFood = true;
                 }
+            }
+            else
+            {
+                creatureMovement.moveToFood= false;
             }
             
         }
-
-
-
         foodColLastFrame = foodColThisFrame;
     }
 
@@ -59,6 +64,11 @@ public class CreatureController : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, foodDetectRadius);
     }
+    private void OnDestroy()
+    {
+        Destroy(creatureHungerBar.hungerBarInstance);
+    }
+
     //private void OnTriggerEnter2D(Collider2D col)
     //{
     //    if (col.gameObject.CompareTag(myMate))

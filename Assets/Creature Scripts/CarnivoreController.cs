@@ -19,15 +19,18 @@ public class CarnivoreController : MonoBehaviour
     private void Awake()
     {
         myController= GetComponent<CreatureController>();
-        CreatureManager.Instance.Carnivores.Add(this);
-        myController.myFood = myFoodType;
+        //CreatureManager.Instance.Carnivores.Add(this);
+        //myController.myFood = myFoodType;
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //using tags is stupid change to smth else
         if (collision.gameObject.CompareTag(myFoodType))
         {
+            Debug.Log("eat");
             Destroy(collision.gameObject);
+            myController.creatureHunger.HungerGoUp(collision.GetComponent<CreatureController>().calVal);
         }
     }
     private void OnDestroy()

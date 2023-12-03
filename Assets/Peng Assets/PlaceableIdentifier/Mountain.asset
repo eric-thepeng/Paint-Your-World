@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e64053f5327431d8751c58a31d970c, type: 3}
   m_Name: Mountain
   m_EditorClassIdentifier: 
-  prefab: {fileID: 5628871402361581698, guid: a516ddda54cbc4859b1e752334e76492, type: 3}
+  prefab: {fileID: 1502362736687990514, guid: 121f3bdf2789a4f5fafa1df8c83b8360, type: 3}
   placeableName: Mountain

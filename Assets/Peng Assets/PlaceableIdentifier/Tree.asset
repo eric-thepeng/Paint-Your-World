@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e64053f5327431d8751c58a31d970c, type: 3}
   m_Name: Tree
   m_EditorClassIdentifier: 
-  prefab: {fileID: 670507100161463912, guid: 30c8ab6b1f4ed4326914e2da2d1895d7, type: 3}
+  prefab: {fileID: 1502362736687990514, guid: 1855a9f3e846a4d95916f5d81c596829, type: 3}
   placeableName: Tree

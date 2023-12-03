@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e64053f5327431d8751c58a31d970c, type: 3}
   m_Name: Stone
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4877915227778958744, guid: 15cbf067f4ce54bb9bc0bb53081faa0b, type: 3}
+  prefab: {fileID: 3555469458109181305, guid: a7d04f2236f8d4a74bc25d5f38f0290d, type: 3}
   placeableName: Stone

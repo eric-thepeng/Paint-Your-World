@@ -17,6 +17,7 @@ public class BackgroundPlaneCell : PlaneCell
                 Vector3 treePosition = new Vector3(Random.Range(-0.5f, 0.5f),Random.Range(-0.5f, 0.5f),0);
                 GameObject newGO = Instantiate(kvp.Key.prefab,this.transform);
                 newGO.transform.localPosition = treePosition;
+                newGO.transform.localScale = GenerationManager.i.placeableScale;
             }
         }
     }

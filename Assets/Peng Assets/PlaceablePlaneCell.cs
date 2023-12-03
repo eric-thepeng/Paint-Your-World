@@ -10,9 +10,10 @@ public class PlaceablePlaneCell : PlaneCell
         var mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPos.z = 0f; // zero z
         
-        GameObject newGO = Instantiate(GenerationManager.i.placingPlaceableIdentifier.prefab,this.transform);
+        GameObject newGO = Instantiate(InventoryManager.i.GetSelectedPlaceableIdentifier().prefab,this.transform);
         newGO.transform.position = mouseWorldPos;
+        newGO.transform.localScale = GenerationManager.i.placeableScale;
 
-        cellStats.AddPlaceableIdentifier(GenerationManager.i.placingPlaceableIdentifier);
+        cellStats.AddPlaceableIdentifier(InventoryManager.i.GetSelectedPlaceableIdentifier());
     }
 }

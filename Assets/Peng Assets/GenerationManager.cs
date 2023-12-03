@@ -17,18 +17,6 @@ public class GenerationManager : MonoBehaviour
             return instance;
         }
     }
-
-    public PlaceableIdentifier placingPlaceableIdentifier;
-
-    public PlaceableIdentifier[] allPlacingPlaceableIdentifiers = new PlaceableIdentifier[5];
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) placingPlaceableIdentifier = allPlacingPlaceableIdentifiers[0];
-        if (Input.GetKeyDown(KeyCode.Alpha2)) placingPlaceableIdentifier = allPlacingPlaceableIdentifiers[1];
-        if (Input.GetKeyDown(KeyCode.Alpha3)) placingPlaceableIdentifier = allPlacingPlaceableIdentifiers[2];
-        if (Input.GetKeyDown(KeyCode.Alpha4)) placingPlaceableIdentifier = allPlacingPlaceableIdentifiers[3];
-        if (Input.GetKeyDown(KeyCode.Alpha5)) placingPlaceableIdentifier = allPlacingPlaceableIdentifiers[4];
-
-    }
+    
+    public Vector3 placeableScale = new Vector3(0.1f, 0.1f, 0.1f);
 }

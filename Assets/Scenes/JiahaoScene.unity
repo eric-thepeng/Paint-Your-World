@@ -353,8 +353,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Paint Left: '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 98b73b4577e4a524fa4edc548cd3102b, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 98b73b4577e4a524fa4edc548cd3102b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -458,7 +458,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linePrefab: {fileID: 3447737780303569751, guid: 03f32f77d3f00490ea5baabed9824014, type: 3}
-  paintAmount: 100
+  paintAmount: 1e+9
   paintAmountText: {fileID: 1662576246}
 --- !u!4 &1162819307
 Transform:
@@ -534,8 +534,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 100
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 98b73b4577e4a524fa4edc548cd3102b, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 98b73b4577e4a524fa4edc548cd3102b, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

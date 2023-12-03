@@ -7,14 +7,16 @@ using System.Linq;
 public class Line : MonoBehaviour
 {
     public LineRenderer lineRenderer;
-    
+
 
     List<Vector2> points;
 
     public void UpdateLine(Vector2 position)
     {
-        if(points == null)
+        if (points == null)
         {
+            //position.x *= transform.parent.localScale.x;
+            //position.y *= transform.parent.localScale.y;
             points = new List<Vector2>();
             SetPoint(position);
             return;
@@ -37,12 +39,12 @@ public class Line : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

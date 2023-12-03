@@ -30,7 +30,7 @@ public class WorldPlane : MonoBehaviour
     private SuperPosition[,] superPositionsGrid;
 
     Vector2Int[] allDirections = new Vector2Int[4] { new Vector2Int(1, 0), new Vector2Int(-1, 0), new Vector2Int(0, 1), new Vector2Int(0, -1) };
-    
+
     public class Adjacency
     {
         public CellStats orgCellStat;
@@ -62,28 +62,50 @@ public class WorldPlane : MonoBehaviour
 
     enum PlaneState
     {
-        Waiting, Generating
+        Waiting, Designing, Growing, Complete
     }
 
     private PlaneState planeState = PlaneState.Waiting;
+    private float minMaskScale = 7;
+    private float maxMaskScale = 20f;
+    private float maskGrowSpeed = 2f;
+
+    private GameObject spriteMaskGameObject;
 
     private void Start()
     {
+        spriteMaskGameObject = transform.Find("SpriteMask").gameObject;
         GenerateStartingPlane(startingLevel);
         allAdjacncies = new List<Adjacency>();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J))
+        if (planeState == PlaneState.Waiting)
         {
-            GenerateWorld(); //GenerateLevel(1);
+            if (Input.GetKeyDown(KeyCode.K))
+            {
+                AnalyzeAdjacency();
+                GenerateWorld(); 
+                StartGrowing();
+            }
+        }else if (planeState == PlaneState.Growing)
+        {
+            if (spriteMaskGameObject.transform.localScale.x < maxMaskScale)
+            {
+                spriteMaskGameObject.transform.localScale += new Vector3(maskGrowSpeed, maskGrowSpeed, maskGrowSpeed) * Time.deltaTime;
+            }
+            else
+            {
+                planeState = PlaneState.Complete;
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            AnalyzeAdjacency();
-        }
+    }
+
+    public void StartGrowing()
+    {
+        planeState = PlaneState.Growing;
     }
 
     public void GenerateStartingPlane(int amount)

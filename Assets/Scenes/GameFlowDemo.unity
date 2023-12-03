@@ -349,6 +349,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4baca69e583e4432086517e700ea4f69, type: 2}
   - {fileID: 11400000, guid: 5a8ca365c9da94f9083fcd06b7d31dea, type: 2}
   - {fileID: 11400000, guid: d6cce08e8d1254522beb56e7404acb4c, type: 2}
+  - {fileID: 11400000, guid: 70dcd9a2216e9432ba463566b566e071, type: 2}
+  - {fileID: 11400000, guid: 76f205f4b27314b87840a18a5d121fcc, type: 2}
+  - {fileID: 11400000, guid: 251b42aa332b04009a0857fbcc34059d, type: 2}
   inventoryItemDisplacement: {x: 0, y: -0.8, z: 0}
   selectedInventoryItemIndex: 0
 --- !u!1 &32347685

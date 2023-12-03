@@ -73,6 +73,18 @@ public class InventoryManager : MonoBehaviour
         {
             selectedInventoryItemIndex = 2;
         }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            selectedInventoryItemIndex = 3;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            selectedInventoryItemIndex = 4;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            selectedInventoryItemIndex = 5;
+        }
 
     }
 

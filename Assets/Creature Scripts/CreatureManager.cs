@@ -12,9 +12,12 @@ public class CreatureManager : MonoBehaviour
     public Vector3 centerPoint= Vector3.zero;
     public float radiusBounds = 30f;
 
+    public bool ongoing = false;
+    
     private void Awake()
     {
         Instance = this;
     }
+    
 
 }

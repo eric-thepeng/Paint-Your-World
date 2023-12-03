@@ -35,13 +35,14 @@ public class CreatureMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        var step = 1f * Time.deltaTime;
         if(moveToFood && foodFollower!=null)
         {
             moving= false;
             StopAllCoroutines();
             idleMove = null;
             foodPos = foodFollower.transform.position;
-            transform.position = Vector3.Lerp(transform.position, foodPos, 0.1f * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, foodPos, step);
         }
         else
         {

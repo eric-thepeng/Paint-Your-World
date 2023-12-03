@@ -9,6 +9,9 @@ public class CreatureManager : MonoBehaviour
     public List<GameObject> Carnivores = new List<GameObject>();
     public List<GameObject> Herbivores = new List<GameObject>();
 
+    public Vector3 centerPoint= Vector3.zero;
+    public float radiusBounds = 30f;
+
     private void Awake()
     {
         Instance = this;

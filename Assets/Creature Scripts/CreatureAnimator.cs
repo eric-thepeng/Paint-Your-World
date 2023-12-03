@@ -27,6 +27,16 @@ public class CreatureAnimator : MonoBehaviour
             yield return new WaitForSeconds(animateSpeed);
         }
     }
+    public IEnumerator Move()
+    {
+        while(animating)
+        {
+            transform.DOScaleX(ogScaleX + 0.2f, animateSpeed);
+            yield return new WaitForSeconds(animateSpeed);
+            transform.DOScaleX(ogScaleX, animateSpeed);
+            yield return new WaitForSeconds(animateSpeed);
+        }
+    }
     public IEnumerator AnimatingCoroutine(IEnumerator e)
     {
         animating= true;

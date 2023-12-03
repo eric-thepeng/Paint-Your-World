@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CreatureReproducible : MonoBehaviour
 {
-    [SerializeField] private float babyCooldownTime = 10f;
+    [SerializeField] private float babyCooldownTime = 20f;
     private bool canMakeBaby = false;
     public string myMate;
     [SerializeField] GameObject babyPrefab;

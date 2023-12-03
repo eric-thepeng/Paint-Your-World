@@ -16,12 +16,17 @@ public class WorldPlane : MonoBehaviour
     [SerializeField] private int startingLevel;
     [SerializeField] private int totalLevel;
     [SerializeField] private int maxTryTime = 30;
-    private int level = 0;
     
     [SerializeField]private float unitSize = 1f;
 
+    /// <summary>
+    /// index is from 0,0 to startingLevel * 2-1
+    /// </summary>
     private Dictionary<Vector2Int, PlaneCell> startingCells;
 
+    /// <summary>
+    /// index is from 0,0 to startingLevel * 2 -1
+    /// </summary>
     private SuperPosition[,] superPositionsGrid;
 
     Vector2Int[] allDirections = new Vector2Int[4] { new Vector2Int(1, 0), new Vector2Int(-1, 0), new Vector2Int(0, 1), new Vector2Int(0, -1) };
@@ -85,31 +90,23 @@ public class WorldPlane : MonoBehaviour
     {
         GameObject goToGenerate = PlaceableCellTemplate;
         startingCells = new Dictionary<Vector2Int, PlaneCell>();
-        while (amount != 0)
+        for (int i = 0; i < 2*startingLevel+1; i++)
         {
-            amount--;
-            
-            for (int i = -level; i <= level; i++)
+            for (int j = 0; j < 2*startingLevel+1; j++)
             {
-                for (int j = -level; j <= level; j++)
-                {
-                    if (i == -level || i == level || j == -level || j == level)
-                    {
-                        // Create new cell
-                        GameObject newCell = Instantiate(goToGenerate,transform);
-                        newCell.SetActive(true);
-                        newCell.transform.position = new Vector3(i * unitSize, j* unitSize, 0);
-                        startingCells.Add(new Vector2Int(i + startingLevel,j + startingLevel),newCell.GetComponent<PlaneCell>());
-                        
-                        // Populate with placeables - Placable Cell
-                        newCell.GetComponent<PlaceablePlaneCell>().SetUp(this);
-                        
-                        // Adujust Size 
-                        newCell.transform.localScale = new Vector3(unitSize, unitSize, unitSize);
-                    }
-                }
+
+                // Create new cell
+                GameObject newCell = Instantiate(goToGenerate,transform);
+                newCell.SetActive(true);
+                newCell.transform.position = new Vector3((i - startingLevel) * unitSize, (j-startingLevel)* unitSize, 0);
+                startingCells.Add(new Vector2Int(i + startingLevel,j + startingLevel),newCell.GetComponent<PlaneCell>());
+                
+                // Populate with placeables - Placable Cell
+                newCell.GetComponent<PlaceablePlaneCell>().SetUp(this);
+                
+                // Adujust Size 
+                newCell.transform.localScale = new Vector3(unitSize, unitSize, unitSize);
             }
-            level++;
         }
     }
 
@@ -135,16 +132,23 @@ public class WorldPlane : MonoBehaviour
 
     void BuildTheWorld()
     {
-        for (int x = 0; x < 2*totalLevel - 1; x++)
+        for (int x = 0; x < 2*totalLevel + 1; x++)
         {
-            for (int y = 0; y < 2*totalLevel - 1; y++)
+            for (int y = 0; y < 2*totalLevel + 1; y++)
             {
-                if (!startingCells.ContainsKey(new Vector2Int(x, y)))
+                //if (!startingCells.ContainsKey(new Vector2Int(x, y) - new Vector2Int( totalLevel-startingLevel, totalLevel-startingLevel)))
+                if(!(
+                       x<(totalLevel*2+1-(totalLevel-startingLevel)) 
+                       && x>=(totalLevel-startingLevel)
+                       && y<(totalLevel*2+1-(totalLevel-startingLevel)) 
+                       && y>=(totalLevel-startingLevel)
+                       ))
                 {
                     // Create new cell
                     GameObject newCell = Instantiate(BackgroundCellTemplate,transform);
                     newCell.SetActive(true);
-                    newCell.transform.position = new Vector3((x-startingLevel) * (unitSize), (y-startingLevel)* (unitSize), 0);
+                    newCell.transform.position = new Vector3((x-(totalLevel)) * (unitSize), (y-(totalLevel))* (unitSize), 0);
+                    //newCell.transform.position = new Vector3((x*unitSize), (y* unitSize), 0);
                     newCell.GetComponent<BackgroundPlaneCell>()
                         .AssignCellStats(superPositionsGrid[x,y].GetObservedValue());
                     
@@ -270,7 +274,7 @@ public class WorldPlane : MonoBehaviour
 
     public void InitializeGrid()
     {
-        int gridWidth = 2 * totalLevel - 1;
+        int gridWidth = 2 * totalLevel + 1;
         superPositionsGrid = new SuperPosition[gridWidth, gridWidth];
         Vector2Int botLeftStartingCell = new Vector2Int(totalLevel - startingLevel, totalLevel - startingLevel);
 

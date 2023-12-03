@@ -14,6 +14,11 @@ public class HerbivoreController : MonoBehaviour
     private void Awake()
     {
         myController= GetComponent<CreatureController>();
+
+    }
+    private void Start()
+    {
+        CreatureManager.Instance.Herbivores.Add(this.gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -24,11 +29,12 @@ public class HerbivoreController : MonoBehaviour
             myController.creatureHunger.HungerGoUp(100f);
             collision.gameObject.SetActive(false);
             StartCoroutine(ReloadGrass(collision.gameObject));
+            myController.creatureMovement.StartCoroutine(myController.creatureMovement.CreatureEating());
         }
     }
     private void OnDestroy()
     {
-        CreatureManager.Instance.Herbivores.Remove(this);
+        CreatureManager.Instance.Herbivores.Remove(this.gameObject);
     }
     private IEnumerator ReloadGrass(GameObject grass)
     {

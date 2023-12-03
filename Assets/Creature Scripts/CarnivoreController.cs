@@ -19,9 +19,12 @@ public class CarnivoreController : MonoBehaviour
     private void Awake()
     {
         myController= GetComponent<CreatureController>();
-        //CreatureManager.Instance.Carnivores.Add(this);
         //myController.myFood = myFoodType;
 
+    }
+    private void Start()
+    {
+        CreatureManager.Instance.Carnivores.Add(this.gameObject);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -36,7 +39,7 @@ public class CarnivoreController : MonoBehaviour
     }
     private void OnDestroy()
     {
-        CreatureManager.Instance.Carnivores.Remove(this);
+        CreatureManager.Instance.Carnivores.Remove(this.gameObject);
     }
 
 }

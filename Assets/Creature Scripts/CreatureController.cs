@@ -26,7 +26,6 @@ public class CreatureController : MonoBehaviour
 
     private void Awake()
     {
-        creatureMan = CreatureManager.Instance;
 
         creatureReproducible = GetComponent<CreatureReproducible>();
         creatureHunger = GetComponent<CreatureHunger>();
@@ -46,13 +45,15 @@ public class CreatureController : MonoBehaviour
                 if(!foodColLastFrame)
                 {
                     Debug.Log(name + "move to food" + foodDetectHit.collider.name);
-                    creatureMovement.foodPos = foodDetectHit.collider.gameObject.transform.position;
+                    creatureMovement.foodFollower = foodDetectHit.collider.gameObject;
+                    creatureMovement.startPos = transform.position;
                     creatureMovement.moveToFood = true;
                 }
             }
             else
             {
                 creatureMovement.moveToFood= false;
+                creatureMovement.foodFollower = null;
             }
             
         }

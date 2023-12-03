@@ -1,6 +1,7 @@
 using Fungus;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CreatureMovement : MonoBehaviour
@@ -11,9 +12,11 @@ public class CreatureMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private bool moving = true;
+    public GameObject foodFollower;
     public Vector3 foodPos;
     public bool moveToFood;
     private Coroutine idleMove;
+    public Vector3 startPos;
 
     private CreatureController myController;
 
@@ -26,13 +29,19 @@ public class CreatureMovement : MonoBehaviour
     {
         idleMove = StartCoroutine(CreatureIdleMove());
     }
+    private void Update()
+    {
+
+    }
     private void FixedUpdate()
     {
-        if(moveToFood)
+        if(moveToFood && foodFollower!=null)
         {
+            moving= false;
             StopAllCoroutines();
             idleMove = null;
-            transform.position = Vector3.Lerp(transform.position, foodPos, 0.5f*Time.deltaTime);
+            foodPos = foodFollower.transform.position;
+            transform.position = Vector3.Lerp(transform.position, foodPos, 0.1f * Time.deltaTime);
         }
         else
         {
@@ -69,7 +78,7 @@ public class CreatureMovement : MonoBehaviour
         StopCoroutine(CreatureIdleMove());
         rb.velocity = Vector3.zero;
 
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(3f);
 
         moving= true;
         StartCoroutine(CreatureIdleMove());

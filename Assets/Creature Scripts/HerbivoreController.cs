@@ -23,11 +23,17 @@ public class HerbivoreController : MonoBehaviour
             Debug.Log("eat");
             myController.creatureHunger.HungerGoUp(100f);
             collision.gameObject.SetActive(false);
+            StartCoroutine(ReloadGrass(collision.gameObject));
         }
     }
     private void OnDestroy()
     {
         CreatureManager.Instance.Herbivores.Remove(this);
+    }
+    private IEnumerator ReloadGrass(GameObject grass)
+    {
+        yield return new WaitForSeconds(5);
+        grass.SetActive(true);
     }
 
 }

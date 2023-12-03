@@ -63,16 +63,15 @@ public class CreatureMovement : MonoBehaviour
             yield return new WaitForSeconds(Random.Range(waitTimeMin, waitTimeMax));
         }
     }
-    public IEnumerator CreatureEating(Vector3 foodPos)
+    public IEnumerator CreatureEating()
     {
+        moving= false;
         StopCoroutine(CreatureIdleMove());
-        while(transform.position != foodPos)
-        {
-            //MoveToFood(foodPos);
-        }
-        myController.creatureHunger.HungerGoUp(10f);
-        yield return new WaitForSeconds(7f);
+        rb.velocity = Vector3.zero;
 
+        yield return new WaitForSeconds(6f);
+
+        moving= true;
         StartCoroutine(CreatureIdleMove());
     }
 }

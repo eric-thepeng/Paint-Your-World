@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 1415247869443884837}
   - component: {fileID: 4145343823691426837}
   - component: {fileID: 9043536291710719596}
+  - component: {fileID: -1890361097681776646}
   m_Layer: 0
   m_Name: creature
   m_TagString: Untagged
@@ -177,8 +178,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   babyCooldownTime: 10
+  myMate: 
   babyPrefab: {fileID: 0}
   justSpawnedBaby: 0
+  creatureManager: {fileID: 0}
 --- !u!114 &2357847367702229864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,6 +222,7 @@ MonoBehaviour:
   creatureHunger: {fileID: 0}
   creatureDestructible: {fileID: 0}
   creatureMovement: {fileID: 0}
+  creatureHungerBar: {fileID: 0}
 --- !u!114 &1415247869443884837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,3 +264,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hungerBar: {fileID: 4884151038153885134, guid: 65206d0fb6a18fb41b67e8c8c212fac2, type: 3}
   hungerBarInstance: {fileID: 0}
+  canvas: {fileID: 0}
+--- !u!114 &-1890361097681776646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8146527701948680424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f721d32dd7e9984ca8c1674a22fbddb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animating: 0

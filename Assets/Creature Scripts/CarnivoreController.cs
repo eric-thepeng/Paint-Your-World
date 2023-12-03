@@ -31,6 +31,7 @@ public class CarnivoreController : MonoBehaviour
             Debug.Log("eat");
             Destroy(collision.gameObject);
             myController.creatureHunger.HungerGoUp(collision.GetComponent<CreatureController>().calVal);
+            myController.creatureMovement.StartCoroutine(myController.creatureMovement.CreatureEating());
         }
     }
     private void OnDestroy()

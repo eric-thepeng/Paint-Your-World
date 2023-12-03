@@ -91,7 +91,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
+  m_MaskInteraction: 1
   m_SpriteSortPoint: 0
 --- !u!61 &2464453167226128136
 BoxCollider2D:
@@ -199,8 +199,10 @@ MonoBehaviour:
   waitTimeMax: 5
   boundsY: 5
   boundsX: 9
+  foodFollower: {fileID: 0}
   foodPos: {x: 0, y: 0, z: 0}
   moveToFood: 0
+  startPos: {x: 0, y: 0, z: 0}
 --- !u!114 &8503791122503517681
 MonoBehaviour:
   m_ObjectHideFlags: 0

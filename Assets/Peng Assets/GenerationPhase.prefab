@@ -45,11 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cef4b9e32bf7417a9d4f93af48eb2a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placingPlaceableIdentifier: {fileID: 11400000, guid: d6cce08e8d1254522beb56e7404acb4c, type: 2}
-  allPlacingPlaceableIdentifiers:
-  - {fileID: 11400000, guid: d6cce08e8d1254522beb56e7404acb4c, type: 2}
-  - {fileID: 11400000, guid: 4baca69e583e4432086517e700ea4f69, type: 2}
-  - {fileID: 11400000, guid: 5a8ca365c9da94f9083fcd06b7d31dea, type: 2}
+  placeableScale: {x: 0.1, y: 0.1, z: 0.1}
 --- !u!1001 &2382770562376464555
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58,6 +54,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3553339161068532389}
     m_Modifications:
+    - target: {fileID: 3102697494425047776, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102697494425047776, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102697494425047776, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3102697494425047776, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4786648656427241208, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
       propertyPath: m_Name
       value: WorldPlane

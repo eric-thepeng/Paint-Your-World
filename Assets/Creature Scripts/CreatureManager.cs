@@ -13,11 +13,30 @@ public class CreatureManager : MonoBehaviour
     public float radiusBounds = 30f;
 
     public bool ongoing = false;
+    public bool startedBehavior = false;
     
     private void Awake()
     {
         Instance = this;
     }
-    
+    private void Update()
+    {
+        if(startedBehavior)
+        {
+            StartCreatureBehavior();
+        }
+    }
+    public void StartCreatureBehavior()
+    {
+        foreach(GameObject obj in Carnivores)
+        {
+            obj.GetComponent<CreatureMovement>().enabled = true;
+        }
+        foreach(GameObject obj in Herbivores)
+        {
+            obj.GetComponent<CreatureMovement>().enabled = true;
+        }
+    }
+
 
 }

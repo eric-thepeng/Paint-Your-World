@@ -10,17 +10,17 @@ public class CreatureAnimator : MonoBehaviour
     public bool animating;
     private float animateSpeed = 0.3f;
 
-    private void Awake()
+    private void Start()
     {
-        ogScaleX= transform.localScale.x;
-        ogScaleY= transform.localScale.y;
+        ogScaleX = transform.localScale.x;
+        ogScaleY = transform.localScale.y;
     }
     public IEnumerator Eat()
     {
         while(animating)
         {
-            transform.DOScaleX(ogScaleX + 0.5f, animateSpeed);
-            transform.DOScaleY(ogScaleY - 0.5f, animateSpeed);
+            transform.DOScaleX(ogScaleX * 1.2f, animateSpeed);
+            transform.DOScaleY(ogScaleY/1.1f, animateSpeed);
             yield return new WaitForSeconds(animateSpeed);
             transform.DOScaleX(ogScaleX, animateSpeed);
             transform.DOScaleY(ogScaleY, animateSpeed);
@@ -31,7 +31,7 @@ public class CreatureAnimator : MonoBehaviour
     {
         while(animating)
         {
-            transform.DOScaleX(ogScaleX + 0.2f, animateSpeed);
+            transform.DOScaleX(ogScaleX * 1.2f, animateSpeed);
             yield return new WaitForSeconds(animateSpeed);
             transform.DOScaleX(ogScaleX, animateSpeed);
             yield return new WaitForSeconds(animateSpeed);

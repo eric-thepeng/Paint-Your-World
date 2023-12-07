@@ -108,7 +108,7 @@ public class LineGenerator : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButton(0) && !hit.collider.CompareTag("DrawCanvas"))
+        if (Input.GetMouseButton(0) && hit.collider!= null && !hit.collider.CompareTag("DrawCanvas"))
         {
             //if (paintAmount > 0)
             //{

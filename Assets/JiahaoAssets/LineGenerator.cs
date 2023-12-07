@@ -150,7 +150,7 @@ public class LineGenerator : MonoBehaviour
         PlaceableIdentifier targetPlaceableIdentifier = InventoryManager.i.GetSelectedPlaceableIdentifier();
         targetPlaceableIdentifier.prefab.GetComponent<SpriteRenderer>().sprite = spr;
         targetPlaceableIdentifier.prefab.GetComponent<SpriteRenderer>().sharedMaterial.mainTexture = tex_transparent;
-        InventoryManager.i.FinishPaintingPlaceableIdentifier(targetPlaceableIdentifier);
+        InventoryManager.i.FinishPaintingCurrent();
 
         /*
         foreach (Transform child in entityParent.transform)

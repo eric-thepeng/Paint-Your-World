@@ -30,8 +30,8 @@ public class InventoryManager : MonoBehaviour
 
     public int selectedInventoryItemIndex = 0;
 
-    private PlaceableIdentifier currentPlaceableIdentifier = null;
-    private InventoryItem currentInventoryItem = null;
+    public PlaceableIdentifier currentPlaceableIdentifier = null;
+    public InventoryItem currentInventoryItem = null;
 
     public PlaceableIdentifier GetSelectedPlaceableIdentifier()
     {

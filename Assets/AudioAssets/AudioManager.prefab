@@ -1,0 +1,147 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8328370424876031206
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5743166797540942311}
+  - component: {fileID: 4935261183936170083}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5743166797540942311
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8328370424876031206}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.7408733, y: -0.047365695, z: -0.43234536}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4935261183936170083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8328370424876031206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eafa0e45e6ea301419cf05e2b4fbea7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mixerGroup: {fileID: 0}
+  sounds:
+  - name: Ambience
+    clip: {fileID: 8300000, guid: d469f048512cd6f4dbcf4b2632277138, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: BG Music
+    clip: {fileID: 8300000, guid: 9a3780ef9f7168d43ad122bfccbcb479, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Drawing
+    clip: {fileID: 8300000, guid: fa9f6021fd9bd34479ceb9af592e854c, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 1
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Planet Appear
+    clip: {fileID: 8300000, guid: f397d63aa75e44540b07fb3f0974c7fc, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Planet Generate
+    clip: {fileID: 8300000, guid: 441744374ab4078469df52f1de0de217, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Create Planet
+    clip: {fileID: 8300000, guid: 900c9dae1ffe8954195db327ef0aba65, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Canvas Appear
+    clip: {fileID: 8300000, guid: 0de6af1f59e5e8441adc99cf236d6989, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Canvas Appear
+    clip: {fileID: 8300000, guid: 0de6af1f59e5e8441adc99cf236d6989, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Place Down
+    clip: {fileID: 8300000, guid: c62b919910fe0ae4b9cfb1330eabbb9a, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: UI Select
+    clip: {fileID: 8300000, guid: 430cbcf86445b98458c5fe997b2220a9, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Start
+    clip: {fileID: 8300000, guid: a987e686049391a42aa1855deb1ed109, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}

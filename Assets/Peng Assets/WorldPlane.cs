@@ -106,6 +106,7 @@ public class WorldPlane : MonoBehaviour
     public void StartGrowing()
     {
         planeState = PlaneState.Growing;
+        GetComponentInChildren<CreatureManager>().startedBehavior = true;
     }
 
     public void GenerateStartingPlane(int amount)

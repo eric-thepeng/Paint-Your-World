@@ -9,11 +9,11 @@ public class CreatureManager : MonoBehaviour
     public List<GameObject> Carnivores = new List<GameObject>();
     public List<GameObject> Herbivores = new List<GameObject>();
 
-    public Vector3 centerPoint= Vector3.zero;
-    public float radiusBounds = 30f;
-
     public bool ongoing = false;
     public bool startedBehavior = false;
+
+    public float boundsRadius = 4f;
+    public Vector3 boundsCenterPoint = Vector3.zero;
     
     private void Awake()
     {
@@ -38,5 +38,9 @@ public class CreatureManager : MonoBehaviour
         }
     }
 
-
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(boundsCenterPoint, boundsRadius);
+    }
 }

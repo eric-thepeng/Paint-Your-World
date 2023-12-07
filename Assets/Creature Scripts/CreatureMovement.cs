@@ -17,6 +17,9 @@ public class CreatureMovement : MonoBehaviour
     public bool moveToFood;
     private Coroutine idleMove;
     public Vector3 startPos;
+    private Vector3 facing;
+    private float boundsRadius = 4f;
+    private Vector3 centerPoint = Vector3.zero;
 
     private CreatureController myController;
 
@@ -28,6 +31,8 @@ public class CreatureMovement : MonoBehaviour
     private void Start()
     {
         idleMove = StartCoroutine(CreatureIdleMove());
+        boundsRadius = CreatureManager.Instance.boundsRadius;
+        centerPoint = CreatureManager.Instance.boundsCenterPoint;
     }
     private void Update()
     {
@@ -35,6 +40,9 @@ public class CreatureMovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        boundsRadius = CreatureManager.Instance.boundsRadius;
+        centerPoint = CreatureManager.Instance.boundsCenterPoint;
+
         var step = 1f * Time.deltaTime;
         if(moveToFood && foodFollower!=null)
         {
@@ -53,7 +61,6 @@ public class CreatureMovement : MonoBehaviour
             }
         }
     }
-
     public Vector2 MoveAround()
     {
         Vector2 move = new Vector2(Random.Range(-speed,speed), Random.Range(-speed,speed));
@@ -63,13 +70,24 @@ public class CreatureMovement : MonoBehaviour
     {
         while (moving)
         {
-            rb.velocity = MoveAround();
-            
+            rb.velocity = Vector3.zero;
+            var move = MoveAround();
+
+            rb.velocity += move;
+
+            facing = rb.rotation * Vector3.forward;
 
             yield return new WaitForSeconds(Random.Range(waitTimeMin, waitTimeMax));
             rb.velocity = Vector3.zero;
-            //transform.position = new Vector3(Mathf.Clamp(transform.position.x, -boundsX, boundsX), Mathf.Clamp(transform.position.y, -boundsY, boundsY), transform.position.z);
 
+            var checkBounds = Mathf.Sqrt(Mathf.Pow(Mathf.Abs(transform.position.x - centerPoint.x), 2) + Mathf.Pow(Mathf.Abs(transform.position.y - centerPoint.y), 2));
+            if (checkBounds > boundsRadius)
+            {
+                rb.velocity += move;
+                rb.velocity *= -1;
+                yield return new WaitForSeconds(Random.Range(waitTimeMin, waitTimeMax));
+                rb.velocity = Vector3.zero;
+            }
             yield return new WaitForSeconds(Random.Range(waitTimeMin, waitTimeMax));
         }
     }

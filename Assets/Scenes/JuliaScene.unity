@@ -640,7 +640,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 14.546132
+  orthographic size: 38.67098
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1055,6 +1055,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Carnivores: []
   Herbivores: []
+  ongoing: 0
+  startedBehavior: 0
+  boundsRadius: 40
+  boundsCenterPoint: {x: 0, y: 0, z: 0}
 --- !u!4 &1402915169
 Transform:
   m_ObjectHideFlags: 0
@@ -1513,6 +1517,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8ee33cf045b549e40a337ffc30bf4614, type: 3}
+--- !u!1001 &3822657599219836075
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5743166797540942311, guid: 51ee9dfb002783449ba0dc333829da2b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.7408733
+      objectReference: {fileID: 0}
+    - target: {fileID: 5743166797540942311, guid: 51ee9dfb002783449ba0dc333829da2b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.047365695
+      objectReference: {fileID: 0}
+    - target: {fileID: 5743166797540942311, guid: 51ee9dfb002783449ba0dc333829da2b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.43234536
+      objectReference: {fileID: 0}
+    - target: {fileID: 5743166797540942311, guid: 51ee9dfb002783449ba0dc333829da2b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5743166797540942311, guid: 51ee9dfb002783449ba0dc333829da2b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5743166797540942311, guid: 51ee9dfb002783449ba0dc333829da2b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5743166797540942311, guid: 51ee9dfb002783449ba0dc333829da2b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5743166797540942311, guid: 51ee9dfb002783449ba0dc333829da2b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5743166797540942311, guid: 51ee9dfb002783449ba0dc333829da2b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5743166797540942311, guid: 51ee9dfb002783449ba0dc333829da2b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8328370424876031206, guid: 51ee9dfb002783449ba0dc333829da2b, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 51ee9dfb002783449ba0dc333829da2b, type: 3}
 --- !u!1001 &4997399855508927202
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1598,3 +1659,4 @@ SceneRoots:
   - {fileID: 65853955}
   - {fileID: 1848616219}
   - {fileID: 986955271}
+  - {fileID: 3822657599219836075}

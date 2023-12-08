@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 4145343823691426837}
   - component: {fileID: 9043536291710719596}
   - component: {fileID: -1890361097681776646}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: creature
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,6 +202,7 @@ MonoBehaviour:
   foodFollower: {fileID: 0}
   foodPos: {x: 0, y: 0, z: 0}
   moveToFood: 0
+  moveToCenter: 0
   startPos: {x: 0, y: 0, z: 0}
 --- !u!114 &8503791122503517681
 MonoBehaviour:

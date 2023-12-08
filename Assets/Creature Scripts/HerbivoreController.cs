@@ -22,10 +22,9 @@ public class HerbivoreController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //using tags is stupid change to smth else
         if (collision.gameObject.CompareTag(myFoodType))
         {
-            Debug.Log("eat");
+            //Debug.Log("eat");
             myController.creatureHunger.HungerGoUp(100f);
             collision.gameObject.SetActive(false);
             StartCoroutine(ReloadGrass(collision.gameObject));

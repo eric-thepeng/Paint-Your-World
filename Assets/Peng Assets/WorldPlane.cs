@@ -12,6 +12,9 @@ public class WorldPlane : MonoBehaviour
 {
     [SerializeField] private GameObject BackgroundCellTemplate;
     [SerializeField] private GameObject PlaceableCellTemplate;
+    [SerializeField] private GameObject startButton;
+    
+    [SerializeField] private GameObject prepStage;
     
     [SerializeField] private int startingLevel;
     [SerializeField] private int totalLevel;
@@ -62,34 +65,26 @@ public class WorldPlane : MonoBehaviour
 
     enum PlaneState
     {
-        Waiting, Designing, Growing, Complete
+        Hidden,Waiting, Designing, Growing, Complete
     }
 
-    private PlaneState planeState = PlaneState.Waiting;
+    private PlaneState planeState = PlaneState.Hidden;
     private float minMaskScale = 7;
     private float maxMaskScale = 20f;
     private float maskGrowSpeed = 2f;
 
     private GameObject spriteMaskGameObject;
 
-    private void Start()
+    private void StartGenerationStage()
     {
         spriteMaskGameObject = transform.Find("SpriteMask").gameObject;
         GenerateStartingPlane(startingLevel);
         allAdjacncies = new List<Adjacency>();
     }
-
+    
     private void Update()
     {
-        if (planeState == PlaneState.Waiting)
-        {
-            if (Input.GetKeyDown(KeyCode.K))
-            {
-                AnalyzeAdjacency();
-                GenerateWorld(); 
-                StartGrowing();
-            }
-        }else if (planeState == PlaneState.Growing)
+        if (planeState == PlaneState.Growing)
         {
             if (spriteMaskGameObject.transform.localScale.x < maxMaskScale)
             {
@@ -101,6 +96,25 @@ public class WorldPlane : MonoBehaviour
             }
         }
 
+    }
+
+    public void EnterBuilding()
+    {
+        print("enterBuilding");
+        prepStage.SetActive(false);
+        startButton.SetActive(true);
+        StartGenerationStage();
+        planeState = PlaneState.Waiting;
+    }
+
+    public void BuildFinished()
+    {
+        if (planeState == PlaneState.Waiting)
+        {
+            AnalyzeAdjacency();
+            GenerateWorld(); 
+            StartGrowing();  
+        }
     }
 
     public void StartGrowing()

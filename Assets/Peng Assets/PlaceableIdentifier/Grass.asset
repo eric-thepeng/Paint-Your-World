@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 493728496575759740, guid: 1999a0688f8ad6c4fbca7ab45b21f4dc, type: 3}
   placeableName: Grass
+  defaultScale: 0.5

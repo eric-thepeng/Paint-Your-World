@@ -7,4 +7,5 @@ public class PlaceableIdentifier : ScriptableObject
 {
    public GameObject prefab;
    public string placeableName;
+   public float defaultScale = 1f;
 }

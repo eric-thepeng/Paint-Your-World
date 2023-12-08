@@ -9,15 +9,20 @@ public class CreatureManager : MonoBehaviour
     public List<GameObject> Carnivores = new List<GameObject>();
     public List<GameObject> Herbivores = new List<GameObject>();
 
-    public Vector3 centerPoint= Vector3.zero;
-    public float radiusBounds = 30f;
-
     public bool ongoing = false;
     public bool startedBehavior = false;
+
+    public float boundsRadius = 40f;
+    public Vector3 boundsCenterPoint = Vector3.zero;
+    public LayerMask mask;
     
     private void Awake()
     {
         Instance = this;
+    }
+    private void Start()
+    {
+        mask = LayerMask.NameToLayer("Creatures");
     }
     private void Update()
     {
@@ -25,6 +30,15 @@ public class CreatureManager : MonoBehaviour
         {
             StartCreatureBehavior();
         }
+        
+    }
+    private void FixedUpdate()
+    {
+        RaycastHit2D hit = Physics2D.CircleCast(boundsCenterPoint, boundsRadius, Vector2.zero, Mathf.Infinity, mask);
+        //if (hit.collider.GetComponent<CreatureMovement>() != null)
+        //{
+        //    hit.collider.GetComponent<CreatureMovement>().moveToCenter = false;
+        //}
     }
     public void StartCreatureBehavior()
     {
@@ -38,5 +52,9 @@ public class CreatureManager : MonoBehaviour
         }
     }
 
-
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(boundsCenterPoint, boundsRadius);
+    }
 }

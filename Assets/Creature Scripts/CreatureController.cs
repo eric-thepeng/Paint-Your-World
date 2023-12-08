@@ -19,7 +19,7 @@ public class CreatureController : MonoBehaviour
     public CreatureMovement creatureMovement;
     public CreatureHungerBar creatureHungerBar;
 
-    private float foodDetectRadius = 4f;
+    private float foodDetectRadius = 1f;
 
     private bool foodColThisFrame, foodColLastFrame;
 
@@ -44,7 +44,7 @@ public class CreatureController : MonoBehaviour
                 foodColThisFrame = true;
                 if(!foodColLastFrame)
                 {
-                    Debug.Log(name + "move to food" + foodDetectHit.collider.name);
+                    //Debug.Log(name + "move to food" + foodDetectHit.collider.name);
                     creatureMovement.foodFollower = foodDetectHit.collider.gameObject;
                     creatureMovement.startPos = transform.position;
                     creatureMovement.moveToFood = true;

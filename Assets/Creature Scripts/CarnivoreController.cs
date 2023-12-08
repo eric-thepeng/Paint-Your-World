@@ -28,10 +28,9 @@ public class CarnivoreController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //using tags is stupid change to smth else
         if (collision.gameObject.CompareTag(myFoodType))
         {
-            Debug.Log("eat");
+            //Debug.Log("eat");
             Destroy(collision.gameObject);
             myController.creatureHunger.HungerGoUp(collision.GetComponent<CreatureController>().calVal);
             myController.creatureMovement.StartCoroutine(myController.creatureMovement.CreatureEating());

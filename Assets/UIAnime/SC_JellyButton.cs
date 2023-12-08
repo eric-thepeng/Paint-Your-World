@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -10,7 +11,7 @@ public class SC_JellyButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     private Vector3 originalScale;
     private bool isPressed = false;
     private bool isHovering = false;
-
+    
     void Start()
     {
         originalScale = transform.localScale;
@@ -36,6 +37,12 @@ public class SC_JellyButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     public void OnPointerUp(PointerEventData eventData)
     {
         isPressed = false;
+        InventoryItem ii = gameObject.GetComponent<InventoryItem>();
+        if (ii == null)
+        {
+            return;
+        }
+        InventoryManager.i.SelectInventoryItem(ii);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

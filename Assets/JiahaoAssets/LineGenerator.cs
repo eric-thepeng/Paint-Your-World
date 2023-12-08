@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using System.IO;
 using TMPro;
 using System;
@@ -26,6 +27,10 @@ public class LineGenerator : MonoBehaviour
 
     private GameObject lineContainer;
 
+    private List<GameObject> Lines = new List<GameObject>();
+    private int currentLineIndex = 0;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,6 +51,26 @@ public class LineGenerator : MonoBehaviour
         }
     }
 
+    public void UndoLine()
+    {
+        if (currentLineIndex - 1 >= 0)
+        {
+            currentLineIndex -= 1;
+            Lines[currentLineIndex].GetComponent<LineRenderer>().enabled = false;
+        }
+
+    }
+
+    public void RedoLine()
+    {
+        if (currentLineIndex + 1 <= Lines.Count) {
+            
+            Lines[currentLineIndex].GetComponent<LineRenderer>().enabled = true;
+            currentLineIndex += 1;
+        }
+    }
+
+
     public void ClearLines()
     {
         foreach (Transform tf in lineContainer.transform)
@@ -55,48 +80,60 @@ public class LineGenerator : MonoBehaviour
     }
 
 
-    // Update is called once per frame
     void Update()
     {
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        //(Physics.Raycast(ray, out hit) && hit.collider.CompareTag("DrawCanvas"))
+        // Raycast to check if the mouse is over a 2D sprite with the tag "DrawCanvas"
+        RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+        Debug.Log(currentLineIndex);
+        if (Input.GetMouseButtonDown(0) && hit.collider != null && hit.collider.CompareTag("DrawCanvas"))
         {
-            if (Input.GetMouseButtonDown(0))
+            if (paintAmount > 0)
             {
-                if (paintAmount > 0)
+                GameObject newLine = Instantiate(linePrefab, lineContainer.transform);
+                Lines.Add(newLine);
+                currentLineIndex += 1;
+                if(currentLineIndex != Lines.Count-1)
                 {
-                    GameObject newLine = Instantiate(linePrefab,lineContainer.transform);
-                    activeLine = newLine.GetComponent<Line>();
+                    for (int i = 0; i < Lines.Count; i++)
+                    {
+                        if(i > currentLineIndex)
+                        {
+                            Lines.Remove(Lines[i]);
+                        }
+                    }
+                    currentLineIndex = Lines.Count;
                 }
+                
+                activeLine = newLine.GetComponent<Line>();
             }
-
-            if (Input.GetMouseButton(0))
-            {
-                if (paintAmount > 0)
-                {
-                    paintAmount -= Time.deltaTime * 10f;
-                }
-            }
-
-            paintAmountText.text = Mathf.RoundToInt(paintAmount).ToString();
-
-            if (Input.GetMouseButtonUp(0))
-            {
-                activeLine = null;
-            }
-
-            if (activeLine != null)
-            {
-                Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                activeLine.UpdateLine(mousePos);
-                activeLine.GetComponent<LineRenderer>().widthMultiplier = lineWidth;
-            }
-
-            lineWidth = lineWidthSlider.value * 10f;
         }
+
+        if (Input.GetMouseButton(0) && hit.collider!= null && !hit.collider.CompareTag("DrawCanvas"))
+        {
+            //if (paintAmount > 0)
+            //{
+            //    paintAmount -= Time.deltaTime * 10f;
+            //}
+            activeLine = null;
+        }
+
+        paintAmountText.text = Mathf.RoundToInt(paintAmount).ToString();
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            activeLine = null;
+        }
+
+        if (activeLine != null)
+        {
+            Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            activeLine.UpdateLine(mousePos);
+            activeLine.GetComponent<LineRenderer>().widthMultiplier = lineWidth;
+        }
+
+        lineWidth = lineWidthSlider.value * 10f;
     }
+
 
 
     public void TakeTransparentScreenshot(Camera cam, int width, int height, string savePath)
@@ -150,7 +187,7 @@ public class LineGenerator : MonoBehaviour
         PlaceableIdentifier targetPlaceableIdentifier = InventoryManager.i.GetSelectedPlaceableIdentifier();
         targetPlaceableIdentifier.prefab.GetComponent<SpriteRenderer>().sprite = spr;
         targetPlaceableIdentifier.prefab.GetComponent<SpriteRenderer>().sharedMaterial.mainTexture = tex_transparent;
-        InventoryManager.i.FinishPaintingPlaceableIdentifier(targetPlaceableIdentifier);
+        InventoryManager.i.FinishPaintingCurrent();
 
         /*
         foreach (Transform child in entityParent.transform)

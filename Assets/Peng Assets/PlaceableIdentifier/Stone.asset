@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 1502362736687990514, guid: 0347668e7a4194ec79e03b44b51f0dcb, type: 3}
   placeableName: Stone
+  defaultScale: 0.5

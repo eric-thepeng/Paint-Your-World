@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 1502362736687990514, guid: 121f3bdf2789a4f5fafa1df8c83b8360, type: 3}
   placeableName: Mountain
+  defaultScale: 3

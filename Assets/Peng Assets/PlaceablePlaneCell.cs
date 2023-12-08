@@ -13,7 +13,7 @@ public class PlaceablePlaneCell : PlaneCell
         PlaceableIdentifier targetPI = InventoryManager.i.GetSelectedPlaceableIdentifier();
         GameObject newGO = Instantiate(targetPI.prefab,this.transform);
         newGO.transform.position = mouseWorldPos;
-        newGO.transform.localScale = GenerationManager.i.placeableScale;
+        newGO.transform.localScale = GenerationManager.i.placeableScale * targetPI.defaultScale;
 
         cellStats.AddPlaceableIdentifier(InventoryManager.i.GetSelectedPlaceableIdentifier());
     }

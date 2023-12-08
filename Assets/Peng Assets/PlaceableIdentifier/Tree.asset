@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 1502362736687990514, guid: 1855a9f3e846a4d95916f5d81c596829, type: 3}
   placeableName: Tree
+  defaultScale: 1.5

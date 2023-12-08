@@ -181,6 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 503596d3f1a0c42dbb56c428c02062c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nameText: {fileID: 7730723625130529686}
   placeableIdentifierImage: {fileID: 3499869687429353744}
   placeableIdentifier: {fileID: 11400000, guid: 70dcd9a2216e9432ba463566b566e071, type: 2}
 --- !u!114 &4899142025300735615
@@ -325,7 +326,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 21
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535

@@ -23,12 +23,13 @@ public class LineGenerator : MonoBehaviour
     public float lineWidth;
     public Slider lineWidthSlider;
 
-    private bool isScreenshot = false;
-
     private GameObject lineContainer;
 
     private List<GameObject> Lines = new List<GameObject>();
     private int currentLineIndex = 0;
+
+    public Color LineColor1;
+    public Color LineColor2;
 
 
     // Start is called before the first frame update
@@ -49,6 +50,30 @@ public class LineGenerator : MonoBehaviour
         {
             lineGenerator.ClearLines();
         }
+    }
+
+    public void SetColorRed()
+    {
+        LineColor1 = new Color32(255, 43, 54, 170); ;
+        LineColor2 = new Color32(212, 0,67,170);
+    }
+
+    public void SetColorBlue()
+    {
+        LineColor1 = new Color32(36, 215, 255, 170); 
+        LineColor2 = new Color32(0, 80, 219, 170);
+    }
+
+    public void SetColorGreen()
+    {
+        LineColor1 = new Color32(118, 255, 38, 170);
+        LineColor2 = new Color32(0, 209, 70, 170);
+    }
+
+    public void SetColorYellow()
+    {
+        LineColor1 = new Color32(220, 255, 46, 170);
+        LineColor2 = new Color32(217, 90, 0, 170);
     }
 
     public void UndoLine()
@@ -90,9 +115,11 @@ public class LineGenerator : MonoBehaviour
             if (paintAmount > 0)
             {
                 GameObject newLine = Instantiate(linePrefab, lineContainer.transform);
+                newLine.GetComponent<LineRenderer>().startColor = LineColor1;
+                newLine.GetComponent<LineRenderer>().endColor = LineColor2;
                 Lines.Add(newLine);
                 currentLineIndex += 1;
-                if(currentLineIndex != Lines.Count-1)
+                if(currentLineIndex != Lines.Count)
                 {
                     for (int i = 0; i < Lines.Count; i++)
                     {
@@ -102,19 +129,19 @@ public class LineGenerator : MonoBehaviour
                         }
                     }
                     currentLineIndex = Lines.Count;
+                    Debug.Log("Memory cleared");
                 }
                 
                 activeLine = newLine.GetComponent<Line>();
             }
         }
 
-        if (Input.GetMouseButton(0) && hit.collider!= null && !hit.collider.CompareTag("DrawCanvas"))
+        if (Input.GetMouseButton(0) && activeLine != null)
         {
-            //if (paintAmount > 0)
-            //{
-            //    paintAmount -= Time.deltaTime * 10f;
-            //}
-            activeLine = null;
+            if (!hit.collider.CompareTag("DrawCanvas"))
+            {
+                activeLine = null;
+            }
         }
 
         paintAmountText.text = Mathf.RoundToInt(paintAmount).ToString();

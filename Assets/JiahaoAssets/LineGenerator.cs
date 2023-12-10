@@ -30,6 +30,7 @@ public class LineGenerator : MonoBehaviour
 
     public Color LineColor1;
     public Color LineColor2;
+    public byte brushAlpha = 255;
 
 
     // Start is called before the first frame update
@@ -54,26 +55,26 @@ public class LineGenerator : MonoBehaviour
 
     public void SetColorRed()
     {
-        LineColor1 = new Color32(255, 43, 54, 170); ;
-        LineColor2 = new Color32(212, 0,67,170);
+        LineColor1 = new Color32(220, 119, 89, brushAlpha); ;
+        LineColor2 = new Color32(220, 119, 89, brushAlpha);
     }
 
     public void SetColorBlue()
     {
-        LineColor1 = new Color32(36, 215, 255, 170); 
-        LineColor2 = new Color32(0, 80, 219, 170);
+        LineColor1 = new Color32(36, 215, 255, brushAlpha); 
+        LineColor2 = new Color32(0, 80, 219, brushAlpha);
     }
 
     public void SetColorGreen()
     {
-        LineColor1 = new Color32(118, 255, 38, 170);
-        LineColor2 = new Color32(0, 209, 70, 170);
+        LineColor1 = new Color32(118, 255, 38, brushAlpha);
+        LineColor2 = new Color32(0, 209, 70, brushAlpha);
     }
 
     public void SetColorYellow()
     {
-        LineColor1 = new Color32(220, 255, 46, 170);
-        LineColor2 = new Color32(217, 90, 0, 170);
+        LineColor1 = new Color32(220, 255, 46, brushAlpha);
+        LineColor2 = new Color32(217, 90, 0, brushAlpha);
     }
 
     public void UndoLine()

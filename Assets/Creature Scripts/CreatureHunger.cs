@@ -9,15 +9,23 @@ public class CreatureHunger : MonoBehaviour
     [SerializeField] private float hungerDownTime = 10f;
     private CreatureDestructible destruct;
     private CreatureAnimator creatureAnimator;
+  
+   
+
+
+
 
     private void Awake()
     {
         currentHunger= hungerMax;
         destruct = GetComponent<CreatureDestructible>();
         creatureAnimator = GetComponent<CreatureAnimator>();
+       
     }
     private void Start()
+
     {
+        
         StartCoroutine(HungerGoDown());
     }
     public void HungerGoUp(float hungerIncrease)
@@ -40,4 +48,8 @@ public class CreatureHunger : MonoBehaviour
             destruct.DestroyObject();
         }
     }
+   
+
+        
+    
 }

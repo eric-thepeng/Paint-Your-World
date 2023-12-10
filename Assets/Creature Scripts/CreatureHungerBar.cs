@@ -15,7 +15,11 @@ public class CreatureHungerBar : MonoBehaviour
 
     private void Awake()
     {
-        canvas = FindObjectOfType<Canvas>();
+        foreach(Canvas c in FindObjectsOfType<Canvas>())
+        {
+            if (c.gameObject.name == "CanvasHungerBar") canvas = c;
+
+        }
         creatureHunger = GetComponent<CreatureHunger>();
         if (hungerBar == null)
         {

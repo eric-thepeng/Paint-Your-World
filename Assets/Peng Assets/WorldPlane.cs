@@ -120,6 +120,10 @@ public class WorldPlane : MonoBehaviour
     public void StartGrowing()
     {
         planeState = PlaneState.Growing;
+        foreach (var kvp in startingCells)
+        {
+            ((PlaceablePlaneCell)kvp.Value).canPlace = false;
+        }
         GetComponentInChildren<CreatureManager>().startedBehavior = true;
     }
 

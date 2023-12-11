@@ -5,8 +5,10 @@ using UnityEngine;
 
 public class PlaceablePlaneCell : PlaneCell
 {
+    public bool canPlace = true;
     private void OnMouseUp()
     {
+        if(!canPlace) return;
         var mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPos.z = 0f; // zero z
 

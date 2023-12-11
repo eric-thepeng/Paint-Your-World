@@ -10,6 +10,8 @@ TagManager:
   - Predator
   - Prey
   - DrawCanvas
+  - Inventory
+  - inventory
   layers:
   - Default
   - TransparentFX

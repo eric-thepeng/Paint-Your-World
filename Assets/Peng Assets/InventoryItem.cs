@@ -14,7 +14,7 @@ public class InventoryItem : MonoBehaviour
     {
         placeableIdentifierImage.gameObject.SetActive(true);
         placeableIdentifierImage.sprite = placeableIdentifier.prefab.GetComponent<SpriteRenderer>().sprite;
-        nameText.text = placeableIdentifier.placeableName;
+        //nameText.text = placeableIdentifier.placeableName;
     }
 
     private void Start()

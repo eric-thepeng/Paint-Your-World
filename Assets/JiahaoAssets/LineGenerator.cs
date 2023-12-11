@@ -47,10 +47,7 @@ public class LineGenerator : MonoBehaviour
             Directory.CreateDirectory("Assets/Resources/Screenshots");
         }
         TakeTransparentScreenshot(screenshotCamera, Screen.width, Screen.height, filename);
-        foreach (var lineGenerator in FindObjectsOfType<LineGenerator>())
-        {
-            lineGenerator.ClearLines();
-        }
+        ClearAllDrawings();
     }
 
     public void SetColorRed()
@@ -232,5 +229,13 @@ public class LineGenerator : MonoBehaviour
 
 
         //AssetDatabase.Refresh();
+    }
+
+    public void ClearAllDrawings()
+    {
+        foreach (var lineGenerator in FindObjectsOfType<LineGenerator>())
+        {
+            lineGenerator.ClearLines();
+        }
     }
 }

@@ -60,7 +60,7 @@ public class InventoryManager : MonoBehaviour
         currentInventoryItem = ii;
         currentPlaceableIdentifier = ii.placeableIdentifier;
     }
-    
+
     public void FinishPaintingCurrent()
     {
         currentInventoryItem.FinishPainting();

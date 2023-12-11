@@ -11,10 +11,16 @@ public class SC_JellyButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     private Vector3 originalScale;
     private bool isPressed = false;
     private bool isHovering = false;
+
+    public bool defaultSelection = false;
     
     void Start()
     {
         originalScale = transform.localScale;
+        if (defaultSelection)
+        {
+            SelectThisInventoryItem();
+        }
     }
 
     void Update()
@@ -37,6 +43,11 @@ public class SC_JellyButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     public void OnPointerUp(PointerEventData eventData)
     {
         isPressed = false;
+        SelectThisInventoryItem();
+    }
+
+    public void SelectThisInventoryItem()
+    {
         InventoryItem ii = gameObject.GetComponent<InventoryItem>();
         if (ii == null)
         {

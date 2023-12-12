@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,10 +11,19 @@ public class CreatureManager : MonoBehaviour
     public bool ongoing = false;
     public bool startedBehavior = false;
 
-    public float boundsRadius = 40f;
-    public Vector3 boundsCenterPoint = Vector3.zero;
+    public float boundsRadius
+    {
+        get { return myWorldPlane.currentRadius/2; }
+    }
+
+    public Vector3 boundsCenterPoint
+    {
+        get { return transform.position; }
+    }
     public LayerMask mask;
-    
+
+    public WorldPlane myWorldPlane;
+
     private void Start()
     {
         mask = LayerMask.NameToLayer("Creatures");

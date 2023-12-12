@@ -26,7 +26,6 @@ public class CreatureController : MonoBehaviour
 
     private void Awake()
     {
-
         creatureReproducible = GetComponent<CreatureReproducible>();
         creatureHunger = GetComponent<CreatureHunger>();
         creatureDestructible = GetComponent<CreatureDestructible>();

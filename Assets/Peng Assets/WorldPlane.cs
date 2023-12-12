@@ -26,7 +26,7 @@ public class WorldPlane : MonoBehaviour
     [SerializeField] private CreatureManager planCreatureManager;
     
     private Vector3 orgPosition;
-    
+
     /// <summary>
     /// index is from 0,0 to startingLevel * 2-1
     /// </summary>
@@ -74,6 +74,7 @@ public class WorldPlane : MonoBehaviour
     }
 
     private PlaneState planeState = PlaneState.Hidden;
+    public float currentRadius = 7;
     private float minMaskScale = 7;
     private float maxMaskScale = 20f;
     private float maskGrowSpeed = 2f;
@@ -91,7 +92,8 @@ public class WorldPlane : MonoBehaviour
         {
             if (spriteMaskGameObject.transform.localScale.x < maxMaskScale)
             {
-                spriteMaskGameObject.transform.localScale += new Vector3(maskGrowSpeed, maskGrowSpeed, maskGrowSpeed) * Time.deltaTime;
+                currentRadius += maskGrowSpeed * Time.deltaTime;
+                spriteMaskGameObject.transform.localScale = new Vector3(currentRadius, currentRadius, currentRadius);
             }
             else
             {

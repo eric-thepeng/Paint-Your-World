@@ -303,6 +303,7 @@ MonoBehaviour:
   maxTryTime: 1000
   unitSize: 1
   planCreatureManager: {fileID: 304405019299877371}
+  currentRadius: 7
 --- !u!1 &6830773313492166656
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,11 +352,10 @@ MonoBehaviour:
   Herbivores: []
   ongoing: 0
   startedBehavior: 0
-  boundsRadius: 40
-  boundsCenterPoint: {x: 0, y: 0, z: 0}
   mask:
     serializedVersion: 2
     m_Bits: 0
+  myWorldPlane: {fileID: 598872529579535621}
 --- !u!1 &7175481672465394612
 GameObject:
   m_ObjectHideFlags: 0

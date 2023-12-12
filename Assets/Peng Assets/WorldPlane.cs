@@ -20,8 +20,10 @@ public class WorldPlane : MonoBehaviour
     [SerializeField] private int totalLevel;
     [SerializeField] private int maxTryTime = 30;
     
-    [SerializeField]private float unitSize = 1f;
+    [SerializeField] private float unitSize = 1f;
 
+    [SerializeField] private CreatureManager planCreatureManager;
+    
     private Vector3 orgPosition;
     
     /// <summary>
@@ -97,7 +99,7 @@ public class WorldPlane : MonoBehaviour
         }
 
     }
-    
+
     private void StartGenerationStage()
     {
         spriteMaskGameObject = transform.Find("SpriteMask").gameObject;
@@ -197,9 +199,10 @@ public class WorldPlane : MonoBehaviour
                     newCell.SetActive(true);
                     newCell.transform.position = orgPosition + new Vector3((x-(totalLevel)) * (unitSize), (y-(totalLevel))* (unitSize), 0);
                     //newCell.transform.position = new Vector3((x*unitSize), (y* unitSize), 0);
-                    newCell.GetComponent<BackgroundPlaneCell>()
-                        .AssignCellStats(superPositionsGrid[x,y].GetObservedValue());
-                    
+                    BackgroundPlaneCell newCellBackgroundPlaneCell = newCell.GetComponent<BackgroundPlaneCell>();
+                    newCellBackgroundPlaneCell.SetUp(this);
+                    newCellBackgroundPlaneCell.AssignCellStats(superPositionsGrid[x,y].GetObservedValue());
+
                     // Adujust Size 
                     newCell.transform.localScale = new Vector3(unitSize, unitSize, unitSize);
                 }
@@ -573,5 +576,9 @@ public class WorldPlane : MonoBehaviour
         }
         allAdjacncies.Add(tempAdjacency);
     }
-    
+
+    public CreatureManager GetCreatureManager()
+    {
+        return planCreatureManager;
+    }
 }

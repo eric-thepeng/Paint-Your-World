@@ -14,8 +14,14 @@ public class CreatureReproducible : MonoBehaviour
     private void Start()
     {
         StartCoroutine(BabyCooldown());
-        creatureManager = CreatureManager.Instance;
+        creatureManager = GetCreatureManager();
     }
+
+    public CreatureManager GetCreatureManager()
+    {
+        return GetComponent<CreatureController>().creatureMan;
+    }
+    
     public void MakeBaby()
     {
         if (canMakeBaby)

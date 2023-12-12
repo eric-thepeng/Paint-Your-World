@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CreatureManager : MonoBehaviour
 {
-    public static CreatureManager Instance;
-
     public List<GameObject> Carnivores = new List<GameObject>();
     public List<GameObject> Herbivores = new List<GameObject>();
 
@@ -16,10 +14,6 @@ public class CreatureManager : MonoBehaviour
     public Vector3 boundsCenterPoint = Vector3.zero;
     public LayerMask mask;
     
-    private void Awake()
-    {
-        Instance = this;
-    }
     private void Start()
     {
         mask = LayerMask.NameToLayer("Creatures");

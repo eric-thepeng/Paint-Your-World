@@ -18,5 +18,8 @@ public class PlaceablePlaneCell : PlaneCell
         newGO.transform.localScale = GenerationManager.i.placeableScale * targetPI.defaultScale;
 
         cellStats.AddPlaceableIdentifier(InventoryManager.i.GetSelectedPlaceableIdentifier());
+
+        CreatureController potCreatureController = newGO.GetComponent<CreatureController>();
+        if(potCreatureController != null) potCreatureController.creatureMan = parentWorldPlane.GetCreatureManager();
     }
 }

@@ -195,6 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c9e22e80d8a426ab9c73187b61e8e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canPlace: 1
 --- !u!61 &3705152375000404055
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -298,6 +299,7 @@ MonoBehaviour:
   totalLevel: 10
   maxTryTime: 1000
   unitSize: 1
+  planCreatureManager: {fileID: 304405019299877371}
 --- !u!1 &6830773313492166656
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,10 +346,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Carnivores: []
   Herbivores: []
-  centerPoint: {x: 0, y: 0, z: 0}
-  radiusBounds: 30
   ongoing: 0
   startedBehavior: 0
+  boundsRadius: 40
+  boundsCenterPoint: {x: 0, y: 0, z: 0}
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &7175481672465394612
 GameObject:
   m_ObjectHideFlags: 0

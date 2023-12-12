@@ -24,7 +24,12 @@ public class CarnivoreController : MonoBehaviour
     }
     private void Start()
     {
-        CreatureManager.Instance.Carnivores.Add(this.gameObject);
+        GetCreatureManager().Carnivores.Add(this.gameObject);
+    }
+
+    private CreatureManager GetCreatureManager()
+    {
+        return GetComponent<CreatureController>().creatureMan;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -38,7 +43,7 @@ public class CarnivoreController : MonoBehaviour
     }
     private void OnDestroy()
     {
-        CreatureManager.Instance.Carnivores.Remove(this.gameObject);
+        GetCreatureManager().Carnivores.Remove(this.gameObject);
     }
 
 }

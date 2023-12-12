@@ -18,6 +18,9 @@ public class BackgroundPlaneCell : PlaneCell
                 GameObject newGO = Instantiate(kvp.Key.prefab,this.transform);
                 newGO.transform.localPosition = treePosition;
                 newGO.transform.localScale = GenerationManager.i.placeableScale * kvp.Key.defaultScale;
+                
+                CreatureController potCreatureController = newGO.GetComponent<CreatureController>();
+                if(potCreatureController != null) potCreatureController.creatureMan = parentWorldPlane.GetCreatureManager();
             }
         }
     }

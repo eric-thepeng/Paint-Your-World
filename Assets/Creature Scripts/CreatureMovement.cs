@@ -27,6 +27,8 @@ public class CreatureMovement : MonoBehaviour
 
     private CreatureController myController;
 
+    private CreatureManager cm;
+
     private void Awake()
     {
         rb= GetComponent<Rigidbody2D>();
@@ -35,14 +37,19 @@ public class CreatureMovement : MonoBehaviour
     private void Start()
     {
         idleMove = StartCoroutine(CreatureIdleMove());
-        boundsRadius = CreatureManager.Instance.boundsRadius;
-        centerPoint = CreatureManager.Instance.boundsCenterPoint;
+        boundsRadius = GetCreatureManager().boundsRadius;
+        centerPoint = GetCreatureManager().boundsCenterPoint;
+    }
+
+    public CreatureManager GetCreatureManager()
+    {
+        return GetComponent<CreatureController>().creatureMan;
     }
 
     private void FixedUpdate()
     {
-        boundsRadius = CreatureManager.Instance.boundsRadius;
-        centerPoint = CreatureManager.Instance.boundsCenterPoint;
+        boundsRadius = GetCreatureManager().boundsRadius;
+        centerPoint = GetCreatureManager().boundsCenterPoint;
         var checkBounds = Mathf.Sqrt(Mathf.Pow(Mathf.Abs(transform.position.x - centerPoint.x), 2) + Mathf.Pow(Mathf.Abs(transform.position.y - centerPoint.y), 2));
         if (checkBounds > boundsRadius)
         {

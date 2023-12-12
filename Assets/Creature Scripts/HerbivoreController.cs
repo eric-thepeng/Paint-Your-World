@@ -18,7 +18,12 @@ public class HerbivoreController : MonoBehaviour
     }
     private void Start()
     {
-        CreatureManager.Instance.Herbivores.Add(this.gameObject);
+        GetCreatureManager().Herbivores.Add(this.gameObject);
+    }
+
+    public CreatureManager GetCreatureManager()
+    {
+        return GetComponent<CreatureController>().creatureMan;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -33,7 +38,7 @@ public class HerbivoreController : MonoBehaviour
     }
     private void OnDestroy()
     {
-        CreatureManager.Instance.Herbivores.Remove(this.gameObject);
+        GetCreatureManager().Herbivores.Remove(this.gameObject);
     }
     private IEnumerator ReloadGrass(GameObject grass)
     {

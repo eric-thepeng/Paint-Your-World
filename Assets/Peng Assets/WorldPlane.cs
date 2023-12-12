@@ -22,6 +22,8 @@ public class WorldPlane : MonoBehaviour
     
     [SerializeField]private float unitSize = 1f;
 
+    private Vector3 orgPosition;
+    
     /// <summary>
     /// index is from 0,0 to startingLevel * 2-1
     /// </summary>
@@ -75,13 +77,11 @@ public class WorldPlane : MonoBehaviour
 
     private GameObject spriteMaskGameObject;
 
-    private void StartGenerationStage()
+    private void Start()
     {
-        spriteMaskGameObject = transform.Find("SpriteMask").gameObject;
-        GenerateStartingPlane(startingLevel);
-        allAdjacncies = new List<Adjacency>();
+        orgPosition = transform.position;
     }
-    
+
     private void Update()
     {
         if (planeState == PlaneState.Growing)
@@ -96,6 +96,13 @@ public class WorldPlane : MonoBehaviour
             }
         }
 
+    }
+    
+    private void StartGenerationStage()
+    {
+        spriteMaskGameObject = transform.Find("SpriteMask").gameObject;
+        GenerateStartingPlane(startingLevel);
+        allAdjacncies = new List<Adjacency>();
     }
 
     public void EnterBuilding()
@@ -139,7 +146,7 @@ public class WorldPlane : MonoBehaviour
                 // Create new cell
                 GameObject newCell = Instantiate(goToGenerate,transform);
                 newCell.SetActive(true);
-                newCell.transform.position = new Vector3((i - startingLevel) * unitSize, (j-startingLevel)* unitSize, 0);
+                newCell.transform.position = orgPosition + new Vector3((i - startingLevel) * unitSize, (j-startingLevel)* unitSize, 0);
                 startingCells.Add(new Vector2Int(i + startingLevel,j + startingLevel),newCell.GetComponent<PlaneCell>());
                 
                 // Populate with placeables - Placable Cell
@@ -188,7 +195,7 @@ public class WorldPlane : MonoBehaviour
                     // Create new cell
                     GameObject newCell = Instantiate(BackgroundCellTemplate,transform);
                     newCell.SetActive(true);
-                    newCell.transform.position = new Vector3((x-(totalLevel)) * (unitSize), (y-(totalLevel))* (unitSize), 0);
+                    newCell.transform.position = orgPosition + new Vector3((x-(totalLevel)) * (unitSize), (y-(totalLevel))* (unitSize), 0);
                     //newCell.transform.position = new Vector3((x*unitSize), (y* unitSize), 0);
                     newCell.GetComponent<BackgroundPlaneCell>()
                         .AssignCellStats(superPositionsGrid[x,y].GetObservedValue());

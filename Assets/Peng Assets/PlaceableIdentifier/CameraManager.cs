@@ -19,9 +19,19 @@ public class CameraManager : MonoBehaviour
         }
     }
     
+    // Components;
+    private Camera cam;
+    
+    // Move variables
     public bool canMove = false;
     public float moveSpeed = 8f;
-    public float smoothTime = 0.2f;
+    public float smoothTime = 0.1f;
+    
+    // Zoom variables
+    public float zoomSpeed = 20f;
+    public float minZoom = 5f;
+    public float maxZoom = 20f;
+    private float targetZoom;
 
     private Vector3 velocity = Vector3.zero;
     private Vector3 targetPosition;
@@ -30,12 +40,19 @@ public class CameraManager : MonoBehaviour
     void Start()
     {
         targetPosition = transform.position;
+        cam = GetComponent<Camera>();
     }
 
     // Update is called once per frame
     void Update()
     {
         if(!canMove) return;
+        HandleMove();
+        HandleZoom();
+    }
+
+    void HandleMove()
+    {
         float moveX = 0f;
         float moveY = 0f;
 
@@ -62,6 +79,23 @@ public class CameraManager : MonoBehaviour
 
         // Smoothly move the camera towards the target position
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref velocity, smoothTime);
+    }
+    
+    void HandleZoom()
+    {
+        if (Input.GetKey(KeyCode.K))
+        {
+            targetZoom -= zoomSpeed * Time.deltaTime;
+        }
+        if (Input.GetKey(KeyCode.M))
+        {
+            targetZoom += zoomSpeed * Time.deltaTime;
+        }
+
+        targetZoom = Mathf.Clamp(targetZoom, minZoom, maxZoom);
+
+        // Smoothly zoom the camera
+        cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, Time.deltaTime / smoothTime);
     }
 
     public void ChangeMovementAbility(bool changeTo)

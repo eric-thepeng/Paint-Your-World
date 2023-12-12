@@ -10,6 +10,7 @@ using Random = UnityEngine.Random;
 
 public class WorldPlane : MonoBehaviour
 {
+    public Color basePlaneColor = Color.white;
     [SerializeField] private GameObject BackgroundCellTemplate;
     [SerializeField] private GameObject PlaceableCellTemplate;
     [SerializeField] private GameObject startButton;

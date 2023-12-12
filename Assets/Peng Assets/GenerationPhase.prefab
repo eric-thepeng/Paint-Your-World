@@ -56,6 +56,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3553339161068532389}
     m_Modifications:
+    - target: {fileID: 598872529579535621, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
+      propertyPath: basePlaneColor.b
+      value: 0.6517889
+      objectReference: {fileID: 0}
+    - target: {fileID: 598872529579535621, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
+      propertyPath: basePlaneColor.g
+      value: 0.87301755
+      objectReference: {fileID: 0}
+    - target: {fileID: 598872529579535621, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
+      propertyPath: basePlaneColor.r
+      value: 0.9150943
+      objectReference: {fileID: 0}
     - target: {fileID: 3102697494425047776, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
       propertyPath: m_LocalScale.x
       value: 7
@@ -134,6 +146,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3553339161068532389}
     m_Modifications:
+    - target: {fileID: 598872529579535621, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
+      propertyPath: basePlaneColor.b
+      value: 0.71444464
+      objectReference: {fileID: 0}
+    - target: {fileID: 598872529579535621, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
+      propertyPath: basePlaneColor.g
+      value: 0.8962264
+      objectReference: {fileID: 0}
+    - target: {fileID: 598872529579535621, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
+      propertyPath: basePlaneColor.r
+      value: 0.783313
+      objectReference: {fileID: 0}
     - target: {fileID: 3102697494425047776, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
       propertyPath: m_LocalScale.x
       value: 7
@@ -212,6 +236,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3553339161068532389}
     m_Modifications:
+    - target: {fileID: 598872529579535621, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
+      propertyPath: basePlaneColor.b
+      value: 0.8584906
+      objectReference: {fileID: 0}
+    - target: {fileID: 598872529579535621, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
+      propertyPath: basePlaneColor.g
+      value: 0.8507651
+      objectReference: {fileID: 0}
+    - target: {fileID: 598872529579535621, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
+      propertyPath: basePlaneColor.r
+      value: 0.71675867
+      objectReference: {fileID: 0}
     - target: {fileID: 3102697494425047776, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
       propertyPath: m_LocalScale.x
       value: 7

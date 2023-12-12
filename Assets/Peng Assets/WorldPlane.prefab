@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90323194c236145c7b561c169017d8dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundSprite: {fileID: 4991727757783423151}
 --- !u!1 &4745188433467807694
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,6 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96c9e22e80d8a426ab9c73187b61e8e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundSprite: {fileID: 1339129386709185774}
   canPlace: 1
 --- !u!61 &3705152375000404055
 BoxCollider2D:
@@ -291,6 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 690ca4787113542adbb95eef2f3486c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  basePlaneColor: {r: 1, g: 1, b: 1, a: 1}
   BackgroundCellTemplate: {fileID: 200546840751474530}
   PlaceableCellTemplate: {fileID: 4745188433467807694}
   startButton: {fileID: 7175481672465394612}

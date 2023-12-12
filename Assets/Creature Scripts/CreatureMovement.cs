@@ -29,6 +29,8 @@ public class CreatureMovement : MonoBehaviour
 
     private CreatureManager cm;
 
+    private GameObject hungerBar;
+
     private void Awake()
     {
         rb= GetComponent<Rigidbody2D>();
@@ -36,6 +38,7 @@ public class CreatureMovement : MonoBehaviour
     }
     private void Start()
     {
+        hungerBar = GetComponent<CreatureHungerBar>().hungerBarInstance;
         idleMove = StartCoroutine(CreatureIdleMove());
         boundsRadius = GetCreatureManager().boundsRadius;
         centerPoint = GetCreatureManager().boundsCenterPoint;
@@ -51,6 +54,18 @@ public class CreatureMovement : MonoBehaviour
         boundsRadius = GetCreatureManager().boundsRadius;
         centerPoint = GetCreatureManager().boundsCenterPoint;
         var checkBounds = Mathf.Sqrt(Mathf.Pow(Mathf.Abs(transform.position.x - centerPoint.x), 2) + Mathf.Pow(Mathf.Abs(transform.position.y - centerPoint.y), 2));
+
+        if (checkBounds > boundsRadius)
+        {
+            hungerBar.SetActive(false);
+            print("check bound is false: " + gameObject.name);
+            return;
+        }
+        else
+        {
+            hungerBar.SetActive(true);
+        }
+        
         if (checkBounds > boundsRadius)
         {
             moveToCenter= true;

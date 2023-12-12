@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CreatureHungerBar : MonoBehaviour
 {
-    [SerializeField] private GameObject hungerBar;
+    public GameObject hungerBar;
     public GameObject hungerBarInstance;
     private Slider slider;
     private CreatureHunger creatureHunger;

@@ -32,6 +32,7 @@ public class LineGenerator : MonoBehaviour
     public Color LineColor2;
     public byte brushAlpha = 255;
 
+    public int lineCount = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +42,7 @@ public class LineGenerator : MonoBehaviour
 
     public void Screenshot()
     {
+        if(lineCount == 0 ) return;
         string filename = string.Format("Assets/Resources/Screenshots/capture.png");
         if (!Directory.Exists("Assets/Resources/Screenshots"))
         {
@@ -154,6 +156,7 @@ public class LineGenerator : MonoBehaviour
             Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             activeLine.UpdateLine(mousePos);
             activeLine.GetComponent<LineRenderer>().widthMultiplier = lineWidth;
+            lineCount++;
         }
 
         lineWidth = lineWidthSlider.value * 10f;
@@ -237,5 +240,7 @@ public class LineGenerator : MonoBehaviour
         {
             lineGenerator.ClearLines();
         }
+
+        lineCount = 0;
     }
 }

@@ -43,9 +43,10 @@ public class SC_JellyButton : MonoBehaviour, IPointerDownHandler, IPointerUpHand
     public void OnPointerUp(PointerEventData eventData)
     {
         isPressed = false;
-        SelectThisInventoryItem();
+        //SelectThisInventoryItem();
     }
 
+    
     public void SelectThisInventoryItem()
     {
         InventoryItem ii = gameObject.GetComponent<InventoryItem>();

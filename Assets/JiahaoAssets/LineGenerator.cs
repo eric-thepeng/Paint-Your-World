@@ -31,6 +31,7 @@ public class LineGenerator : MonoBehaviour
     public Color LineColor1;
     public Color LineColor2;
     public byte brushAlpha = 255;
+    public GameObject colorOptionHighlight;
 
     public int lineCount = 0;
 
@@ -38,6 +39,7 @@ public class LineGenerator : MonoBehaviour
     void Start()
     {
         lineContainer = new GameObject("Line Container " + gameObject.name);
+        SetColorRed();
     }
 
     public void Screenshot()
@@ -75,6 +77,18 @@ public class LineGenerator : MonoBehaviour
         LineColor1 = new Color32(220, 255, 46, brushAlpha);
         LineColor2 = new Color32(217, 90, 0, brushAlpha);
     }
+
+    public void SetColorOptionHighlightPosition(Transform _transform)
+    {
+        if(Vector2.Distance(colorOptionHighlight.transform.position,_transform.position)<=0.1f)
+        {
+            colorOptionHighlight.SetActive(!colorOptionHighlight.activeSelf); // Toggle the active status
+        }
+        colorOptionHighlight.transform.position = _transform.position;
+        
+    }
+
+
 
     public void UndoLine()
     {

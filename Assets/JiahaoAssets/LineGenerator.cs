@@ -126,6 +126,7 @@ public class LineGenerator : MonoBehaviour
         Debug.Log(currentLineIndex);
         if (Input.GetMouseButtonDown(0) && hit.collider != null && hit.collider.CompareTag("DrawCanvas"))
         {
+            if (!AudioManager.instance.CheckIfPlaying("Drawing")) { AudioManager.instance.Play("Drawing"); }
             if (paintAmount > 0)
             {
                 GameObject newLine = Instantiate(linePrefab, lineContainer.transform);
@@ -161,6 +162,7 @@ public class LineGenerator : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             activeLine = null;
+            AudioManager.instance.Stop("Drawing");
         }
 
         if (activeLine != null)

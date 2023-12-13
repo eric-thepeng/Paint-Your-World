@@ -48,7 +48,7 @@ MonoBehaviour:
   sounds:
   - name: Ambience
     clip: {fileID: 8300000, guid: d469f048512cd6f4dbcf4b2632277138, type: 3}
-    volume: 0.5
+    volume: 0.2
     volumeVariance: 0
     pitch: 0
     pitchVariance: 0
@@ -57,7 +57,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: BG Music
     clip: {fileID: 8300000, guid: 9a3780ef9f7168d43ad122bfccbcb479, type: 3}
-    volume: 0.5
+    volume: 0.1
     volumeVariance: 0
     pitch: 0
     pitchVariance: 0
@@ -66,7 +66,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Drawing
     clip: {fileID: 8300000, guid: fa9f6021fd9bd34479ceb9af592e854c, type: 3}
-    volume: 0.5
+    volume: 0.45
     volumeVariance: 0
     pitch: 0
     pitchVariance: 0
@@ -119,7 +119,7 @@ MonoBehaviour:
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: Place Down
-    clip: {fileID: 8300000, guid: c62b919910fe0ae4b9cfb1330eabbb9a, type: 3}
+    clip: {fileID: 8300000, guid: 8bef0dad111ca0747ab05c90650061e0, type: 3}
     volume: 0.5
     volumeVariance: 0
     pitch: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
     mixerGroup: {fileID: 0}
     source: {fileID: 0}
   - name: UI Select
-    clip: {fileID: 8300000, guid: 430cbcf86445b98458c5fe997b2220a9, type: 3}
+    clip: {fileID: 8300000, guid: 8f35e5387c0c41f47b3b2e11f23724e5, type: 3}
     volume: 0.5
     volumeVariance: 0
     pitch: 0
@@ -141,6 +141,69 @@ MonoBehaviour:
     volume: 0.5
     volumeVariance: 0
     pitch: 0
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Color Select
+    clip: {fileID: 8300000, guid: c62b919910fe0ae4b9cfb1330eabbb9a, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Painting Select
+    clip: {fileID: 8300000, guid: dd13896c22a0e5e458f97ce344099a8a, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Plan My Planet
+    clip: {fileID: 8300000, guid: 900c9dae1ffe8954195db327ef0aba65, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Done
+    clip: {fileID: 8300000, guid: 413f5295a1c43544d93c45fca12bde7e, type: 3}
+    volume: 0.5
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Undo
+    clip: {fileID: 8300000, guid: 21e76f5029ea3d547839695937e23723, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 0
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: Redo
+    clip: {fileID: 8300000, guid: 21e76f5029ea3d547839695937e23723, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 0.64
+    pitchVariance: 0
+    loop: 0
+    mixerGroup: {fileID: 0}
+    source: {fileID: 0}
+  - name: UI Woosh
+    clip: {fileID: 8300000, guid: 564be7e9697608e44a1c4330b816141a, type: 3}
+    volume: 1
+    volumeVariance: 0
+    pitch: 0.64
     pitchVariance: 0
     loop: 0
     mixerGroup: {fileID: 0}

@@ -9,6 +9,7 @@ public class PlaceablePlaneCell : PlaneCell
     private void OnMouseUp()
     {
         if(!canPlace) return;
+        AudioManager.instance.Play("Place Down");
         var mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPos.z = 0f; // zero z
 

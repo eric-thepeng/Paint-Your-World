@@ -264,6 +264,10 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4106659302054569434, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: f89c7fdef0f6a4a049cead6de3122f2b, type: 3}
     - target: {fileID: 4786648656427241208, guid: 5a84e19e50c6d46ffb942c251a271c63, type: 3}
       propertyPath: m_Name
       value: WorldPlane (1)

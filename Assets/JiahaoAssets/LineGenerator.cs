@@ -158,8 +158,6 @@ public class LineGenerator : MonoBehaviour
             }
         }
 
-        paintAmountText.text = Mathf.RoundToInt(paintAmount).ToString();
-
         if (Input.GetMouseButtonUp(0))
         {
             activeLine = null;

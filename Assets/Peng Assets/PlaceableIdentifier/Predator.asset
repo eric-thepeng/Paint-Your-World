@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 6890868613165110467, guid: 1e7488bf94e2e404e8afe5f3358205ca, type: 3}
   placeableName: Predator
-  defaultScale: 1
+  defaultScale: 5

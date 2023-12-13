@@ -57,7 +57,7 @@ public class InventoryManager : MonoBehaviour
 
     public void SelectInventoryItem(InventoryItem ii)
     {
-        AudioManager.instance.Play("UI Select");
+        AudioManager.instance.Play("Painting Select");
         currentInventoryItem = ii;
         currentPlaceableIdentifier = ii.placeableIdentifier;
     }

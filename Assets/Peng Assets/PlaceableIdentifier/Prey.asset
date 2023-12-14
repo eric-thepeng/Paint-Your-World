@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e64053f5327431d8751c58a31d970c, type: 3}
   m_Name: Prey
   m_EditorClassIdentifier: 
-  prefab: {fileID: 6890868613165110467, guid: 1e7488bf94e2e404e8afe5f3358205ca, type: 3}
+  prefab: {fileID: 5820199510341998178, guid: 8ee33cf045b549e40a337ffc30bf4614, type: 3}
   placeableName: Prey
   defaultScale: 1.5

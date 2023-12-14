@@ -347,7 +347,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1162819306}
+      - m_Target: {fileID: 2076179394}
         m_TargetAssemblyTypeName: LineGenerator, Assembly-CSharp
         m_MethodName: UndoLine
         m_Mode: 1
@@ -1032,8 +1032,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -698710140566639493, guid: 876b2e79132df0844be8d6c3f52c3207, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5.473214
+      objectReference: {fileID: 0}
+    - target: {fileID: -698710140566639493, guid: 876b2e79132df0844be8d6c3f52c3207, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 11.320624
+      objectReference: {fileID: 0}
+    - target: {fileID: -698710140566639493, guid: 876b2e79132df0844be8d6c3f52c3207, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.1199999
+      objectReference: {fileID: 0}
+    - target: {fileID: -698710140566639493, guid: 876b2e79132df0844be8d6c3f52c3207, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 5.37
       objectReference: {fileID: 0}
     - target: {fileID: -698710140566639493, guid: 876b2e79132df0844be8d6c3f52c3207, type: 3}
       propertyPath: m_ConstrainProportionsScale
@@ -1089,6 +1101,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4203998745018461947, guid: 876b2e79132df0844be8d6c3f52c3207, type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4388586518823461386, guid: 876b2e79132df0844be8d6c3f52c3207, type: 3}
+      propertyPath: m_Size.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4388586518823461386, guid: 876b2e79132df0844be8d6c3f52c3207, type: 3}
+      propertyPath: m_Size.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4388586518823461386, guid: 876b2e79132df0844be8d6c3f52c3207, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 133a87b34f4a86648a1140fd5b6041ab, type: 3}
+    - target: {fileID: 4388586518823461386, guid: 876b2e79132df0844be8d6c3f52c3207, type: 3}
+      propertyPath: m_DrawMode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5927991210044026877, guid: 876b2e79132df0844be8d6c3f52c3207, type: 3}
@@ -4632,10 +4660,10 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.48, y: 2.13}
-    newSize: {x: 4.48, y: 2.13}
+    oldSize: {x: 24.52, y: 24.11293}
+    newSize: {x: 10, y: 10}
     adaptiveTilingThreshold: 0.5
-    drawMode: 0
+    drawMode: 1
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2

@@ -57,19 +57,19 @@ public class CameraManager : MonoBehaviour
         float moveY = 0f;
 
         // Get input from WASD keys
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.W))
         {
             moveY = 1f;
         }
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.S))
         {
             moveY = -1f;
         }
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A))
         {
             moveX = -1f;
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.D))
         {
             moveX = 1f;
         }
@@ -83,11 +83,11 @@ public class CameraManager : MonoBehaviour
     
     void HandleZoom()
     {
-        if (Input.GetKey(KeyCode.K))
+        if (Input.GetKey(KeyCode.Q))
         {
             targetZoom -= zoomSpeed * Time.deltaTime;
         }
-        if (Input.GetKey(KeyCode.M))
+        if (Input.GetKey(KeyCode.E))
         {
             targetZoom += zoomSpeed * Time.deltaTime;
         }

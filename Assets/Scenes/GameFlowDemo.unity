@@ -6007,6 +6007,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GenerationPhase
       objectReference: {fileID: 0}
+    - target: {fileID: 528422882731967422, guid: 77e89eb03cdf84f979bd39f414a30e85, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3553339161068532389, guid: 77e89eb03cdf84f979bd39f414a30e85, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
